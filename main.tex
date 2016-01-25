@@ -130,26 +130,43 @@ That's something good to do because it can bring a lot of valuable input that we
 This makes the idea evolve; it might go in one direction or another, change shape, or even generate new different ideas.
 This can also be seen as what is called \emph{brainstorming}. This process is in general quite messy.
 A lot of information is generated and not structured, which makes it difficult to highlight the most important items.
+For brainstorming, teams sometimes use a ticketing system that they already use for other projects related tasks.
+Tickets are great for development, but not good for creative brainstorming.
 
 Therefore, what we want to achieve is to design and develop a platform that significantly improves collaboration around ideas within a team or a small to medium-sized company by getting considerably close to the cognitive working reality of a team.
-This will enable the users to have an effective way to bubble up the good ideas among all the information, and also to drive the sharing of new ideas. All this should be highly intuitive and straightforward to use, by being particularly careful about the overall user experience of the platform.
+We want to have a more human experience.
+This will enable the users to have an effective way to bubble up the good ideas among all the information, and also to drive the sharing of new ideas.
+All this should be highly intuitive and straightforward to use, by being particularly careful about the overall user experience of the platform.
 
-%TODO Say that the product is called Flok and tell about its history.
+\subsection{Flok}
+Nothing Interactive developed an internal web platform called \emph{Flok}.
+It was also about improving collaboration within a team or a medium-sized company, but rather by providing various components such as a “to do” app, a time tracker or a global activity stream to which events can be aggregated from external services.
+However, Flok has been rescoped to match this Master thesis goals.
+What stays, in addition of the name, is mostly the general idea of collaboration and respect of the human behavior.
+The original Flok is still accessible on GitHub\footnote{\url{https://github.com/nothinginteractive/flok}}.
 
 \subsection{Hypothesis}
 \label{hypothesis}
 It can be proven that a truly real-time approach to create, read and update information within on-site or remote, (inter-)disciplinary teams significantly improves their shared know-how and overall collaborative spirit thus leading to a verifiable increase of their creative potential.
+
+% TODO What about make "User-centered design" a section and "Personas", "User Story Mapping", "Wireframing" and "Prototyping" subsections of this section?
 
 \subsection{User-centered design}
 The approach taken to create the platform is based on the \emph{user-centered design} concept.
 The goal is to focus first on the user need and to start by designing the user interaction with the product to then define what the content is going to be and which technologies are going to be used.
 The reason why we took this approach is because we really want the product to be intuitive for the end-users, that it matches their expectations regarding what they need, what they can do with the platform, rather than making them adapt their behavior.
 To this end, different processes were used, such as \emph{User Story Mapping} to define the user needs, \emph{Wireframing} and \emph{Prototyping} to quickly test if the design of a functionality matches those user needs, and \emph{User testing} to have feedback from real users in order to adapt the platform to their expectations.
+Moreover, we are not going through these different processes sequentially, but rather iteratively.
+Each of these steps enable us to discover new issues, new opportunities and we have then to reflect those in every step.
+
+% TODO What about integrating the "Product Design Process" of Nothing Interactive?
 
 \section{Personas}
-In order to embrace the user-centered design concept, we have to put ourselves in the shoes of the users we expect to use the platform. To do this, \emph{personas} were created. They are fictional characters build up from the ground who represent the different type of users that we might have. We made three of them for the project. All three work in the same startup. \emph{Andrew McAllister} is the CEO, \emph{Melanie Carter} a developer, and \emph{Sergei Fleming} an interaction designer.
-
-%TODO At the beginning it was hard to define personas as the goal of the platform wasn't perfectly clear
+In order to embrace the user-centered design concept, we have to put ourselves in the shoes of the users we expect to use the platform. To do this, \emph{personas} were created.
+They are fictional characters build up from the ground who represent the different type of users that we might have.
+We made three of them for the project.
+All three work in the same startup. \emph{Andrew McAllister} is the CEO, \emph{Melanie Carter} a developer, and \emph{Sergei Fleming} an interaction designer.
+These personas were not defined in much more details, as part of the research was to determine more clearly for which purpose Flok is going to be used.
 
 \section{User Story Mapping}
 \emph{User Story Mapping} (USM) is a tool which help teams developing software to stay focused on users and their needs \cite{patton2014user}.
@@ -160,7 +177,7 @@ User story maps can be done with software tools which make it easier to edit and
 
 The user story map constantly evolves throughout the development of the project.
 In figure \ref{fig.flokUsmEvolution} you have an overview of how it evolved for Flok.
-Figure \ref{fig.flokFinalUsm} shows you its state at the time of handing in the report.
+Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in the report.
 
 \begin{figure}[!htb]
 \centering
@@ -169,7 +186,7 @@ Figure \ref{fig.flokFinalUsm} shows you its state at the time of handing in the 
 \label{fig.flokUsmEvolution}
 \end{figure}
 
-%TODO Still subject to change until I hand in the report.
+% TODO Still subject to change until I hand in the report.
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
@@ -177,16 +194,37 @@ Figure \ref{fig.flokFinalUsm} shows you its state at the time of handing in the 
 \label{fig.flokUsmCurrent}
 \end{figure}
 
-%TODO describe a bit the story map structure and the content of the final state
+% TODO describe a bit the story map structure and the content of the final state
+
+% TODO link the story map to the hypothesis.
 
 % TODO Not easy to do a User Story Map because of the real-time aspect of the project (realized while doing USM for Tawuala)
 
 \section{Wireframing}
+Once we had a first version of the user story map, the next step was to build wireframes of the user interface.
+Wireframes allow to quickly have a very rough view of the components layout and how they fit in the available space.
+They enable us to see changes that need to be brought even before we start designing or implementing, and hence save us some precious time.
+
+% Edits to Wireframes:
+% - removed negativity
+% - defined what order is the best to show messages
+%   - I’ve found a ​thesis saying that the reading order is the best to generate a consistent discussion.
+% - separated activity from recap in one channel
+% - defined what happened when clicking on a “Recap element”
+
+% TODO link the wireframes to the hypothesis
 
 \section{Prototyping}
+% Material Design Lite
+
+\section{Information architecture}
+% Or ER diagram
+
+% Helps define the vocabulary
 
 \section{Front-end implementation}
 \subsection{Architecture}
+% Angular Material
 
 \subsection{Design decisions}
 

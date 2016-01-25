@@ -6,8 +6,9 @@
 	- User centered design
 - Personas
 - User Story Mapping
-- Wire-framing
+- Wireframing
 - Prototyping
+- Information architecture
 - Front-end implementation
 	1. Architecture
 	- Design decisions 	

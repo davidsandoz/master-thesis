@@ -171,13 +171,9 @@ These personas were not defined in much more details, as part of the research wa
 \section{User Story Mapping}
 \emph{User Story Mapping} (USM) is a tool which help teams developing software to stay focused on users and their needs \cite{patton2014user}.
 It is based on user stories and story maps. \emph{User stories} are descriptions of how users are interacting with the whole product and not only with one of its feature. \emph{Story maps} are a two-dimensional visual representation of stories with \emph{cards} as atomic parts.
-In general, the top row of cards represents the backbone of the story, and the cards below give more details.
+In general, the top row of cards represents the backbone of the story (from left to right), and the cards below give more details.
 In addition to the focus it gives on the users, USM enables the discussion within the team who builds it to create a shared understanding of the product.
 User story maps can be done with software tools which make it easier to edit and share. However, team collaboration is enhanced when people are facing a physical user story map made of sticky notes, which is what has been done for this project.
-
-The user story map constantly evolves throughout the development of the project.
-In figure \ref{fig.flokUsmEvolution} you have an overview of how it evolved for Flok.
-Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in the report.
 
 \begin{figure}[!htb]
 \centering
@@ -186,7 +182,11 @@ Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in th
 \label{fig.flokUsmEvolution}
 \end{figure}
 
-% TODO Still subject to change until I hand in the report.
+The user story map constantly evolves throughout the development of the project.
+In figure \ref{fig.flokUsmEvolution} you have an overview of how it evolved for Flok.
+Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in this report.
+
+% TODO Still subject to change until I hand in the report. Change the story description accordingly
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
@@ -194,16 +194,70 @@ Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in th
 \label{fig.flokUsmCurrent}
 \end{figure}
 
-% TODO describe a bit the story map structure and the content of the final state
+The green sticky notes represent actions by users and the blue ones indicate which user are doing the actions.
+In the latest versions of the user story map, we can notice that the orange sticky notes entitle \emph{slices}, of the story.
+As said, the first row is the backbone.
+Below we have three slices R1, R2 and R3, \emph{R} meaning \emph{release}.
+It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok.
+
+Building this user story map was a bit more tricky than it can be for most others.
+Indeed, as Flok interest resides in the real-time interactions between its users, the story has to jump often from a user to another.
+This makes it also more difficult to follow when reading the story map.
+
+\subsubsection*{Story description}
+The story simply start with Andrew having a rough idea that he wants to share in order to discuss about it and develop it.
+He then adds the idea on Flok and describe it with text, but images as well.
+From here, other users can take part to the idea. For instance, Melanie is looking for interesting ideas in the \emph{discovery} section of the app and she get inspired by the one from Andrew.
+From here, she has several possibilities.
+She can simply bookmark the idea in order to have it saved and hence, easily come back to it later.
+She can also follow the idea in order to get informed of the activity occurring within it.
+Then, as she's interested, she goes through a page which recaps the discussion around the idea.
+This helps her to quickly have a good overview.
+If she wants to actively take part to the idea, she can go to the discussion section and read the last comments before interacting.
+As it happens, she agrees with Andrew's comment and show it by \emph{liking} it and replying directly to it.
+Moreover she wants to find that comment later so she bookmarks it.
+Then she gives her input by writing comments and sharing documents and images.
+However, Andrew disagrees with the input from Melanie and he says it by replying to the corresponding comment.
+
+Among the comments and other inputs of team mates taking part to Andrew's idea, he gets interested by the views of one specific person.
+He looks at this person profile and more precisely in which other ideas she's active and that might interest him.
+
+Back to Andrew's idea, after a while, Sergei joins the idea that he found through the \emph{discovery} section of the app.
+He found the idea interesting and noticed that among the followers there were team mates he usually like their thinking.
+He catches up the discussion through the recap and among the highlighted items one image appealed him.
+He brings up the image in its context to see in more details what it is about.
+This makes him think about another idea so instead of replying at this point of the discussion, he rather decides to fork from the image to create a new idea in Flok.
+
+Initially new ideas are classified under the \emph{Incubating} label.
+This is not the case anymore for Andrew's idea which has evolved and became more mature and precise.
+Hence he decides to update the classification to \emph{Need to decide} where the discussion should be more about what are going to be the next step to implement the idea.
+Moreover, the original name and description of the idea do not suit its content anymore.
+Therefore Andrew updates them accordingly.
+
+After a while, the idea reached the \emph{Open for execution} classification where it got successfully implemented.
+At this point the idea can be archived, which is what Andrew does.
 
 % TODO link the story map to the hypothesis.
-
-% TODO Not easy to do a User Story Map because of the real-time aspect of the project (realized while doing USM for Tawuala)
 
 \section{Wireframing}
 Once we had a first version of the user story map, the next step was to build wireframes of the user interface.
 Wireframes allow to quickly have a very rough view of the components layout and how they fit in the available space.
 They enable us to see changes that need to be brought even before we start designing or implementing, and hence save us some precious time.
+
+For instance, initially ideas were called \emph{topics} and when I designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – The most discussed ones being more prominent (see figure \ref{fig.recapWireframes}).
+This made us realize two things.
+First, there was a lack of shared understanding regarding the scope of the discussions we expect to be held in one topic and therefore also regarding the content of the recap page.
+Secondly, the name \emph{topic} wasn't a good name to describe this concept.
+This is what made us change the name for \emph{idea}. It is also more human – Instead of creating a topic on Flok when you have an idea, you just add an idea on Flok when you have one.
+%TODO explain that it helped to fix something without changing code
+
+\begin{figure}[!htb]
+\centering
+%\includegraphics[width=\textwidth]{images/recapWireframes.jpg} % TODO add the image
+\caption{Original wireframe design of the recap page}
+\label{fig.recapWireframes}
+\end{figure}
+
 
 % Edits to Wireframes:
 % - removed negativity

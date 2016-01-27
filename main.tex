@@ -17,6 +17,7 @@
 \usepackage{fontspec} % For custom fonts
 \usepackage{lipsum} % Lorem ipsum generator
 \usepackage{layouts} %to get the text width in cm
+\usepackage{rotating} %to have some figures sideways.
 
 \usepackage{tikz}
 \usepackage{pgf-umlsd}
@@ -155,6 +156,8 @@ It can be proven that a truly real-time approach to create, read and update info
 The approach taken to create the platform is based on the \emph{user-centered design} concept.
 The goal is to focus first on the user need and to start by designing the user interaction with the product to then define what the content is going to be and which technologies are going to be used.
 The reason why we took this approach is because we really want the product to be intuitive for the end-users, that it matches their expectations regarding what they need, what they can do with the platform, rather than making them adapt their behavior.
+
+%TODO Mention Personas somewhere below
 To this end, different processes were used, such as \emph{User Story Mapping} to define the user needs, \emph{Wireframing} and \emph{Prototyping} to quickly test if the design of a functionality matches those user needs, and \emph{User testing} to have feedback from real users in order to adapt the platform to their expectations.
 Moreover, we are not going through these different processes sequentially, but rather iteratively.
 Each of these steps enable us to discover new issues, new opportunities and we have then to reflect those in every step.
@@ -239,42 +242,77 @@ At this point the idea can be archived, which is what Andrew does.
 
 % TODO link the story map to the hypothesis.
 
+\section{Information architecture}
+To accompany and solidify the project it is important to have a good information architecture.
+This helps to have a well defined vocabulary for the different elements making the product, and how they interact with each other.
+In our case, we made an \emph{entity-relationship diagram} that you can see in figure \ref{fig.erDiagram}.
+In the rectangle are the different entities in Flok.
+The ovals their attributes and the diamonds are actions representing the relation between entities.
+We have to read the relations from top to bottom (e.g. \emph{Persons are actor of Activity items} or \emph{Ideas contain Messages}).
+The thickness of the lines and the fact they are an arrow or not also has a specific meaning, described in the bottom right of the figure.
+For instance, a person can post none or more messages, but a specific message is posted by exactly one person.
+Also, a message must be either an image, a file, a system information or a comment, and any of these four entities has to be a message.
+
+% TODO decide what to do with hashtags, keywords and links that are currently not supported in the platform
+\begin{sidewaysfigure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{images/erDiagram.pdf}
+\caption{The entity-relationship diagram of Flok, representing its information architecture}
+\label{fig.erDiagram}
+\end{sidewaysfigure}
+
+\clearpage
+
 \section{Wireframing}
 Once we had a first version of the user story map, the next step was to build wireframes of the user interface.
 Wireframes allow to quickly have a very rough view of the components layout and how they fit in the available space.
 They enable us to see changes that need to be brought even before we start designing or implementing, and hence save us some precious time.
 
-For instance, initially ideas were called \emph{topics} and when I designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – The most discussed ones being more prominent (see figure \ref{fig.recapWireframes}).
+For instance, initially ideas were called \emph{topics} and when I designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – The most discussed ones being more prominent (see figure \ref{fig.originalRecapWireframes}).
 This made us realize two things.
 First, there was a lack of shared understanding regarding the scope of the discussions we expect to be held in one topic and therefore also regarding the content of the recap page.
 Secondly, the name \emph{topic} wasn't a good name to describe this concept.
 This is what made us change the name for \emph{idea}. It is also more human – Instead of creating a topic on Flok when you have an idea, you just add an idea on Flok when you have one.
-%TODO explain that it helped to fix something without changing code
+This shows that we were able avoid having to change a single line of code to apply this change as it was detected before we start the first prototype.
 
 \begin{figure}[!htb]
 \centering
-%\includegraphics[width=\textwidth]{images/recapWireframes.jpg} % TODO add the image
-\caption{Original wireframe design of the recap page}
-\label{fig.recapWireframes}
+\includegraphics[width=\textwidth]{images/originalRecapWireframes.png}
+\caption{Original wireframe design of the recap page. From left to right: the main recap page, the recap page of one idea in the topic, the dialog asking if we want to see an item in its context, an item highlighted in its context.}
+\label{fig.originalRecapWireframes}
 \end{figure}
 
+You can notice in the wireframes of figure \ref{fig.originalRecapWireframes} that we choose to represent the app in a mobile screen.
+This decision has been made because having less space forces us to think about what is the most important to show to the user.
+It is then easier to design a desktop version from the mobile version than the other way around.
+The \emph{Mobile First} development is also getting more important as more people are accessing the web from their mobile device before doing so from a desktop computer.
 
-% Edits to Wireframes:
-% - removed negativity
-% - defined what order is the best to show messages
-%   - I’ve found a ​thesis saying that the reading order is the best to generate a consistent discussion.
-% - separated activity from recap in one channel
-% - defined what happened when clicking on a “Recap element”
+A few other design decisions were taken during wireframing.
+For instance, it was initially possible to unlike a message in a discussion.
+This has been removed to only keep the like button.
+Indeed, it is not necessary to explicitly express a disagreement with this action which doesn't bring any constructive feedback and we also want to foster positivity.
+A disagreement can still be express with a comment which should be more constructive.
+
+This is also while designing the wireframes that we asked ourselves the question regarding the order the messages in a discussion.
+Some researches \cite{mabande2010designing} concluded that having the oldest ones at the top and the more recent ones at the bottom was leading to more engagement from the participant of a discussion.
+Following this order is also more human as it follows the natural reading order.
+Moreover, as the input field to add messages is at the bottom, having the new messages appearing right above it is also expected.
 
 % TODO link the wireframes to the hypothesis
 
 \section{Prototyping}
-% Material Design Lite
+The step following wireframing is prototyping.
+In this case, the initial goal was to make it mostly visual in order to have a good idea of the look and feel, but also of the possible interactions from the users.
+The content would consist of static mock data.
+To avoid having to create a full visual design, we decided to use the component library \emph{Material Design Lite}\footnote{\url{http://getmdl.io}}, which is an implementation of \emph{Material Design}\footnote{\url{http://google.com/design/spec}}.
+This lightweight library, with the use of some HTML, CSS and simple Javascript, enabled us to quickly have a prototype with a solid visual design (see figure \ref{fig.firstPrototypeScreenshots}).
 
-\section{Information architecture}
-% Or ER diagram
-
-% Helps define the vocabulary
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/firstPrototypeScreenshots.png}
+\caption{Screenshots of Flok first prototype using \emph{Material Design Lite}}
+\label{fig.firstPrototypeScreenshots}
+\end{figure}
 
 \section{Front-end implementation}
 \subsection{Architecture}

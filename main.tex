@@ -18,6 +18,7 @@
 \usepackage{lipsum} % Lorem ipsum generator
 \usepackage{layouts} %to get the text width in cm
 \usepackage{rotating} %to have some figures sideways.
+\usepackage{placeins} % To force floats to be placed before the beginning of next section
 
 \usepackage{tikz}
 \usepackage{pgf-umlsd}
@@ -126,8 +127,8 @@
 \section{Introduction}
 Humans have ideas. Not a lot of those ideas end up being applied, no matter if they are good or bad.
 Sometimes they just stay in the head of the person who had one and are not developed further because the person thinks it is not a good idea.
-She might be right but she can't really know as long as she hasn't shared her idea. And of course it happens that people share their ideas.
-That's something good to do because it can bring a lot of valuable input that we don't necessarily think about by ourselves.
+She might be right but she can't really know as long as she has not shared her idea. And of course it happens that people share their ideas.
+That is something good to do because it can bring a lot of valuable input that we do not necessarily think about by ourselves.
 This makes the idea evolve; it might go in one direction or another, change shape, or even generate new different ideas.
 This can also be seen as what is called \emph{brainstorming}. This process is in general quite messy.
 A lot of information is generated and not structured, which makes it difficult to highlight the most important items.
@@ -224,7 +225,7 @@ From here, other users can take part to the idea. For instance, Melanie is looki
 From here, she has several possibilities.
 She can simply bookmark the idea in order to have it saved and hence, easily come back to it later.
 She can also follow the idea in order to get informed of the activity occurring within it.
-Then, as she's interested, she goes through a page which recaps the discussion around the idea.
+Then, as she is interested, she goes through a page which recaps the discussion around the idea.
 This helps her to quickly have a good overview.
 If she wants to actively take part to the idea, she can go to the discussion section and read the last comments before interacting.
 As it happens, she agrees with Andrew's comment and show it by \emph{liking} it and replying directly to it.
@@ -233,7 +234,7 @@ Then she gives her input by writing comments and sharing documents and images.
 However, Andrew disagrees with the input from Melanie and he says it by replying to the corresponding comment.
 
 Among the comments and other inputs of team mates taking part to Andrew's idea, he gets interested by the views of one specific person.
-He looks at this person profile and more precisely in which other ideas she's active and that might interest him.
+He looks at this person profile and more precisely in which other ideas she is active and that might interest him.
 
 Back to Andrew's idea, after a while, Sergei joins the idea that he found through the \emph{discovery} section of the app.
 He found the idea interesting and noticed that among the followers there were team mates he usually like their thinking.
@@ -281,7 +282,7 @@ They enable us to see changes that need to be brought even before we start desig
 For instance, initially ideas were called \emph{topics} and when I designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – The most discussed ones being more prominent (see figure \ref{fig.originalRecapWireframes}).
 This made us realize two things.
 First, there was a lack of shared understanding regarding the scope of the discussions we expect to be held in one topic and therefore also regarding the content of the recap page.
-Secondly, the name \emph{topic} wasn't a good name to describe this concept.
+Secondly, the name \emph{topic} was not a good name to describe this concept.
 This is what made us change the name for \emph{idea}. It is also more human – Instead of creating a topic on Flok when you have an idea, you just add an idea on Flok when you have one.
 This shows that we were able avoid having to change a single line of code to apply this change as it was detected before we start the first prototype.
 
@@ -300,7 +301,7 @@ The \emph{Mobile First} development is also getting more important as more peopl
 A few other design decisions were taken during wireframing.
 For instance, it was initially possible to unlike a message in a discussion.
 This has been removed to only keep the like button.
-Indeed, it is not necessary to explicitly express a disagreement with this action which doesn't bring any constructive feedback and we also want to foster positivity.
+Indeed, it is not necessary to explicitly express a disagreement with this action which does not bring any constructive feedback and we also want to foster positivity.
 A disagreement can still be express with a comment which should be more constructive.
 
 This is also while designing the wireframes that we asked ourselves the question regarding the order the messages in a discussion.
@@ -348,7 +349,7 @@ Hence, we made some adaptations based an Angular Style Guide written by John Pap
 
 % TODO: give detail on the app internal structure? Schema of relationship between services, directives, controllers, templates, models
 
-Unfortunately, our great focus on building the front-end and having the best user experience possible didn't gave us time to build a functional back-end for the app.
+Unfortunately, our great focus on building the front-end and having the best user experience possible did not gave us time to build a functional back-end for the app.
 At some point we had to take the decision between either building the back-end, or doing the user testing.
 The latter seemed more important as it would (in)validate our assumptions regarding the interaction of the user with the platform.
 We also estimated that it would bring us valuable feedback to improve the front-end.
@@ -363,10 +364,81 @@ Therefore the user can still use and evolve in the app.
 We were not trying to build a fully working application without backend.
 Therefore we still kept in mind an architecture that would communicate with a back-end by simulating calls to it, even though we just get the data from memory.
 
-\subsection{Implementation}
-% Recap, Classification, Activity, Messages, ...
+\subsection{Implementation and design decisions}
+We are not going to describe the implementation of every component as some of them are quite straightforward.
+We are rather going to explain the components where some reflexion had to be made or decisions had to be taken.
 
-\subsection{Design decisions}
+\subsubsection{Ideas classification}
+Here there is actually not much to say regarding the implementation itself.
+We introduced these classification in order to easily visualize the state of an idea.
+Initially, to update the classification, it has either to be promoted or demoted, respectively to the next or previous classification.
+To do so, one of the idea follower had to start a poll asking all the followers to vote for or against and change of classification (see figure \ref{fig.promotionPoll}).
+The goal here was to reflect a common decision.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/promotionPoll.png}
+\caption{Screenshots of Flok prototype featuring the promotion poll}
+\label{fig.promotionPoll}
+\end{figure}
+
+Then we realized the process can actually get complicated.
+What happens if not all followers vote?
+Should we wait?
+Should we define a time limit to vote? Should such a time limit be define by the poll initiator?
+What happens if there is a draw?
+We thought about how to reply to these questions and we could have implemented solutions, but in the end this might be a hassle for the user to make that change of state.
+Therefore we went for a drastic simplification.
+No more poll, no more promotion or demotion.
+We simply let any follower update the classification to any available (see figure \ref{fig.classificationSelect}).
+The change is instantly applied.
+Now there might be disagreement within the followers, but they are all in the same team and they can discuss that.
+And as it is so simple to change the classification, they can easily reversed their decisions.
+Having simplified this action also enabled us to implement an interactive way for the user to update the classification from desktop, by drag and dropping ideas in \emph{Kanban}\footnote{\url{https://en.wikipedia.org/wiki/Kanban}} columns (see figure \ref{fig.classificationDragAndDrop}).
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/classificationSelect.png}
+\caption{Screenshots of Flok front-end featuring the simple classification update of an idea}
+\label{fig.classificationSelect}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/classificationDragAndDrop.png}
+\caption{Screenshots of Flok front-end featuring the drag and drop of an idea from a classification to another}
+\label{fig.classificationDragAndDrop}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{Activity}
+The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself.
+This allow her to have a quick overview of everything that happened in the ideas she is interested in.
+If she wants to see her own activity, it is visible within her profile.
+The actions that are logged in the activity are the following:
+\begin{multicols}{2}
+    \begin{itemize}
+        \item creating an idea
+        \item forking an idea
+        \item following an idea
+        \item moving an idea from a classification to another
+        \item renaming an idea
+        \item adding a message (comment, image or file)
+        \item liking a message
+    \end{itemize}
+\end{multicols}
+
+This activity feature is something we often see in social applications and therefore, it has been implemented in various ways.
+In prevision of any future integration with other external platforms, we decided to follow as closely as possible the \emph{W3C Activity Streams 2.0} standard \cite{Snell2015AS2}.
+Currently, it is still a working draft, and hence subject to change.
+The main efforts have been focused in respecting the properties of an \emph{Activity} object and in using the \emph{W3C Activity Vocabulary} \cite{Snell2015AV} when applicable.
+
+Activity can be logged from anywhere in the application by using the \texttt{log} method from \texttt{activityService}, an AngularJS factory.
+All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.
+
+\subsubsection{Messages}
+\subsubsection{Fork}
+\subsubsection{Recap algorithm}
 
 \section{User testing}
 

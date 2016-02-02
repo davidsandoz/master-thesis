@@ -412,7 +412,7 @@ Having simplified this action also enabled us to implement an interactive way fo
 
 \FloatBarrier
 \subsubsection{Activity}
-The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself.
+The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself (see figure \ref{fig.activity}).
 This allow her to have a quick overview of everything that happened in the ideas she is interested in.
 If she wants to see her own activity, it is visible within her profile.
 The actions that are logged in the activity are the following:
@@ -436,8 +436,44 @@ The main efforts have been focused in respecting the properties of an \emph{Acti
 Activity can be logged from anywhere in the application by using the \texttt{log} method from \texttt{activityService}, an AngularJS factory.
 All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.
 
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/activity.png}
+\caption{Screenshots of Flok front-end featuring the activity of the platform}
+\label{fig.activity}
+\end{figure}
+
 \subsubsection{Messages}
+Messages are one of the central components of Flok.
+They have one author, they are part of one idea and they are either a comment, an image, a document, a system information or a deleted message.
+When adding a message to a discussion, it can be the reply to another message and thus help to establish relations among messages (see figure \ref{fig.messageView}).
+For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
+
+When we introduced the possibility to delete a message, it was really completely deleted.
+However, it also broke relations between messages and ideas, which are made through replies and forks.
+Therefore we decided to add the \emph{deleted} message type, where the content of the message is deleted, but the object itself not.
+Like this the relations are kept.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/messageView.png}
+\caption{Screenshots of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
+\label{fig.messageView}
+\end{figure}
+
 \subsubsection{Fork}
+If we try to look at how humans think, they initially have an idea that they brainstorm by themselves or with other people.
+It then generates new ideas based on the brainstorm and it can go on until an idea really gets developed and executed.
+We tried to represent that in Flok with the \emph{fork} feature.
+Basically, you can create an idea by forking another idea or a message.
+The word comes from the software development world, when a copy of source code is made to start developing on it independently.
+However it works a bit differently in Flok.
+The main goal is to create the relation between the initial idea or message to the newly created idea.
+Nothing is automatically taken from the source which means that the new idea form is blank and the user still has to describe her idea.
+Once the idea is created, the discussion can begin, as any new idea.
+The difference lies in the relation created, which goals is to represent the human way of thinking.
+We wanted to make these relations more visible and therefore implemented a simple visualization showing two levels of parents and children forks (see figure \ref{fig.fork})
+%TODO insert figure for fork (idea view with indication of parents and children + fork visualization)
+
 \subsubsection{Recap algorithm}
 
 \section{User testing}

@@ -127,7 +127,8 @@
 \section{Introduction}
 Humans have ideas. Not a lot of those ideas end up being applied, no matter if they are good or bad.
 Sometimes they just stay in the head of the person who had one and are not developed further because the person thinks it is not a good idea.
-She might be right but she can't really know as long as she has not shared her idea. And of course it happens that people share their ideas.
+She might be right but she can't really know as long as she has not shared her idea.
+And of course it happens that people do share their ideas.
 That is something good to do because it can bring a lot of valuable input that we do not necessarily think about by ourselves.
 This makes the idea evolve; it might go in one direction or another, change shape, or even generate new different ideas.
 This can also be seen as what is called \emph{brainstorming}. This process is in general quite messy.
@@ -218,6 +219,7 @@ Building this user story map was a bit more tricky than it can be for most other
 Indeed, as Flok interest resides in the real-time interactions between its users, the story has to jump often from a user to another.
 This makes it also more difficult to follow when reading the story map.
 
+\FloatBarrier
 \subsubsection*{Story description}
 The story simply start with Andrew having a rough idea that he wants to share in order to discuss about it and develop it.
 He then adds the idea on Flok and describe it with text, but images as well.
@@ -332,6 +334,7 @@ The visual result being good, it seemed to be the right moment to start working 
 
 \section{Front-end}
 \subsection{Architecture}
+\label{sec.architecture}
 We wanted the platform to be fully usable from any device.
 The easiest way to implement that is to have a responsive web application.
 Hence, Javascript and the \emph{MEAN stack} seemed quite appropriate.
@@ -368,7 +371,19 @@ Therefore we still kept in mind an architecture that would communicate with a ba
 We are not going to describe the implementation of every component as some of them are quite straightforward.
 We are rather going to explain the components where some reflexion had to be made or decisions had to be taken.
 
+\subsubsection{Ideas}
+Ideas are the main components of Flok.
+They are created by users and they have three different views.
+The main view gives the general information about the idea: author, creation date, description, classification (section \ref{sec.ideasClassification}), followers and relations with other ideas.
+From here you can also trigger actions on the idea such as following, bookmarking, archiving and forking (section \ref{sec.fork}).
+The available actions depend of the status of the user (creator, follower) toward the idea.
+Then there is the discussion view where all the messages (section \ref{sec.messages}) related to the idea can be found.
+This is also where messages can be added to the discussion.
+Finally there is the recap view (section \ref{sec.recap}) which highlight the most important messages of the discussion.
+%TODO add screenshot of ideas three views
+
 \subsubsection{Ideas classification}
+\label{sec.ideasClassification}
 Here there is actually not much to say regarding the implementation itself.
 We introduced these classification in order to easily visualize the state of an idea.
 Initially, to update the classification, it has either to be promoted or demoted, respectively to the next or previous classification.
@@ -411,6 +426,94 @@ Having simplified this action also enabled us to implement an interactive way fo
 \end{figure}
 
 \FloatBarrier
+\subsubsection{Messages}
+\label{sec.messages}
+Messages are one of the central components of Flok.
+They have one author, they are part of one idea and they are either a comment, an image, a document, a system information or a deleted message.
+When adding a message to a discussion, it can be the reply to another message and thus help to establish relations among messages (see figure \ref{fig.messageView}).
+For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
+
+When we introduced the possibility to delete a message, it was really completely deleted.
+However, it also broke relations between messages and ideas, which are made through replies and forks.
+Therefore we decided to add the \emph{deleted} message type, where the content of the message is deleted, but the object itself not.
+Like this the relations are kept.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/messageView.png}
+\caption{Screenshot of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
+\label{fig.messageView}
+\end{figure}
+
+\subsubsection{Fork}
+\label{sec.fork}
+If we try to look at how humans think, they initially have an idea that they brainstorm by themselves or with other people.
+It then generates new ideas based on the brainstorm and it can go on until an idea really gets developed and executed.
+We tried to represent that in Flok with the \emph{fork} feature.
+Basically, you can create an idea by forking another idea or a message.
+The word comes from the software development world, when a copy of source code is made to start developing on it independently.
+However it works a bit differently in Flok.
+The main goal is to create the relation between the initial idea or message to the newly created idea.
+Nothing is automatically taken from the source which means that the new idea form is blank and the user still has to describe her idea.
+Once the idea is created, the discussion can begin, as any new idea.
+The difference lies in the relation created, which goals is to represent the human way of thinking.
+We wanted to make these relations more visible and therefore implemented visualizations showing forks relations (see figure \ref{fig.forks}).
+Clicking on the fork symbol in the Ideas Overview will bring to the fork navigation.
+We can also get there by clicking on the number of forks from the view of an idea.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/forks.png}
+\caption{Screenshots of Flok front-end featuring forks visualization. On the left, the ideas that are forks or that have been forked are noticeable by a specific symbol symbol on the right. In the middle, it is indicated from which idea an idea has been forked from, as well as how many forks it is the source of. On the right, the forks navigation shows up to two parents or children fork level.}
+\label{fig.forks}
+\end{figure}
+
+\subsubsection{Recap}
+\label{sec.recap}
+We mentioned earlier the fact that brainstorming is a process which can easily get messy, which is normal and natural.
+As we try to be close to the human way of doing, discussions in Flok give the same liberty, which can bring the same messiness.
+However, this liberty let the user express her thoughts and that's why we want to keep it.
+Nevertheless, we want to highlight the most important points of the discussion, bubble up the good ideas.
+This is what the recap do.
+And to do so, it runs an algorithm which returns the most relevant messages and order them by importance.
+
+Such an algorithm should obviously run in the back-end of the system.
+But as explained in section \ref{sec.architecture}, we unfortunately don't have any back-end.
+That's why we implemented the recap algorithm in the front-end.
+
+Initially we wanted to take into consideration the text content of the messages and use some topic modeling to discover the different main topics discussed.
+The \emph{Latent Dirichlet Allocation} \cite{blei2003latent} model seemed to be a good one to use for the algorithm.
+Nonetheless, as we are running the algorithm in the front-end, we went for something simpler.
+We give a weight to each message of the idea's discussion based on the following properties, to which we give more or less impact.
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \item number of likes $l$
+        \item number of bookmarks $b$
+        \item number of replies $r$
+        \item number of forks $f$
+        \item is an image $i = 1 | 0$
+        \item is a document $d = 1 | 0$
+        \item text length $t$
+    \end{itemize}
+\end{multicols}
+
+The weight $w$ of message is then computed as follows.
+
+\begin{equation}
+    \label{eq.messageWeightInRecap}
+    w = 3l + 2b + 2r + f + i + d + \frac{t}{500}
+\end{equation}
+
+The minimum weight for a message to be included in the recap is 1.
+This means that all images or documents are by default included.
+We are doing so in order to very rapidly have some content in the recap when an idea is created.
+As the messages in the recap are ordered by weight, if images or documents don't get more weight, they will simply stay at the bottom.
+
+You will notice in equation \ref{eq.messageWeightInRecap} that some of the message properties are weighted with different factors. %TODO explain factors
+
+%TODO add screenshot of recap view from mobile and desktop
+
 \subsubsection{Activity}
 The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself (see figure \ref{fig.activity}).
 This allow her to have a quick overview of everything that happened in the ideas she is interested in.
@@ -439,42 +542,9 @@ All the activity is stored in this service and we can either get the global acti
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{images/activity.png}
-\caption{Screenshots of Flok front-end featuring the activity of the platform}
+\caption{Screenshot of Flok front-end featuring the activity of the platform}
 \label{fig.activity}
 \end{figure}
-
-\subsubsection{Messages}
-Messages are one of the central components of Flok.
-They have one author, they are part of one idea and they are either a comment, an image, a document, a system information or a deleted message.
-When adding a message to a discussion, it can be the reply to another message and thus help to establish relations among messages (see figure \ref{fig.messageView}).
-For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
-
-When we introduced the possibility to delete a message, it was really completely deleted.
-However, it also broke relations between messages and ideas, which are made through replies and forks.
-Therefore we decided to add the \emph{deleted} message type, where the content of the message is deleted, but the object itself not.
-Like this the relations are kept.
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/messageView.png}
-\caption{Screenshots of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
-\label{fig.messageView}
-\end{figure}
-
-\subsubsection{Fork}
-If we try to look at how humans think, they initially have an idea that they brainstorm by themselves or with other people.
-It then generates new ideas based on the brainstorm and it can go on until an idea really gets developed and executed.
-We tried to represent that in Flok with the \emph{fork} feature.
-Basically, you can create an idea by forking another idea or a message.
-The word comes from the software development world, when a copy of source code is made to start developing on it independently.
-However it works a bit differently in Flok.
-The main goal is to create the relation between the initial idea or message to the newly created idea.
-Nothing is automatically taken from the source which means that the new idea form is blank and the user still has to describe her idea.
-Once the idea is created, the discussion can begin, as any new idea.
-The difference lies in the relation created, which goals is to represent the human way of thinking.
-We wanted to make these relations more visible and therefore implemented a simple visualization showing two levels of parents and children forks (see figure \ref{fig.fork})
-%TODO insert figure for fork (idea view with indication of parents and children + fork visualization)
-
-\subsubsection{Recap algorithm}
 
 \section{User testing}
 

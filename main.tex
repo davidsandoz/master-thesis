@@ -488,9 +488,9 @@ We give a weight to each message of the idea's discussion based on the following
 
 \begin{multicols}{2}
     \begin{itemize}
-        \item number of likes $l$
-        \item number of bookmarks $b$
         \item number of replies $r$
+        \item number of bookmarks $b$
+        \item number of likes $l$
         \item number of forks $f$
         \item is an image $i = 1 | 0$
         \item is a document $d = 1 | 0$
@@ -502,7 +502,7 @@ The weight $w$ of message is then computed as follows.
 
 \begin{equation}
     \label{eq.messageWeightInRecap}
-    w = 3l + 2b + 2r + f + i + d + \frac{t}{500}
+    w = 4r + 3b + 2l + f + i + d + \frac{t}{500}
 \end{equation}
 
 The minimum weight for a message to be included in the recap is 1.
@@ -510,7 +510,28 @@ This means that all images or documents are by default included.
 We are doing so in order to very rapidly have some content in the recap when an idea is created.
 As the messages in the recap are ordered by weight, if images or documents don't get more weight, they will simply stay at the bottom.
 
-You will notice in equation \ref{eq.messageWeightInRecap} that some of the message properties are weighted with different factors. %TODO explain factors
+You will notice in equation \ref{eq.messageWeightInRecap} that some of the message properties are weighted with different factors.
+Replies have the most importance with a factor 4.
+Indeed, replying to a message means that this message generated engagement and new content in the idea.
+Therefore it is certainly good to have it in the recap.
+If a user bookmark a message, it means he want to have it saved for himself.
+This shows a strong interest for the message, thus this being the second most important property with a factor 3.
+When users bookmark a message, it affects their bookmark list and they will therefore be careful regarding what they bookmark.
+The likes however, are only affecting the message which receives them and not the users who give them.
+Hence the reason we give them less importance than bookmarks.
+They still have a factor 2 as they are used to show support or agreement.
+Forking a message means creating a new idea.
+Therefore, we could say that a message that has been forked is of great importance.
+It certainly is for the new created idea, but for the idea containing this message, it does not necessarily need to be highlighted in the recap.
+If it does, then it would get replies, bookmarks or likes that are going to make it appear there.
+This is why forks only have a factor 1 in the computation of a message weight.
+Then, we are adding 1 to the message weight if it is a document or an image.
+As these types of messages are more visual or bring more content than a simple comment, we decided they deserve from the beginning to have the minimum weight to appear in the recap.
+Finally, the text length of a comment also influence the weight of the message.
+If it has enough content, i.e. 500 characters, then it will appear in the recap.
+And the more it has, the bigger its weight will be, the higher it will be in the recap.
+
+Of course, for this simple algorithm, these factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
 
 %TODO add screenshot of recap view from mobile and desktop
 

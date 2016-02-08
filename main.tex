@@ -23,6 +23,7 @@
 \usepackage{tikz}
 \usepackage{pgf-umlsd}
 \usepgflibrary{arrows}
+\usetikzlibrary{positioning,fit,calc}
 
 \setmainfont{Graublau Sans}
 % \defaultfontfeatures{Scale=MatchLowercase}
@@ -365,10 +366,29 @@ Fortunately, as the front-end is a single page application, as long as the page 
 Therefore the user can still use and evolve in the app.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/dealingWithoutBackend.png}
-\caption{Schema illustrating data flow for Flok. In the front-end, the controller of directives ask for data to services. Those service should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
-\label{fig.dealingWithoutBackend}
+    \centering
+    \begin{tikzpicture}
+        \node (frontend) [minimum height=4cm, minimum width=9.5cm, draw=black, anchor=north west] at (0,0) {};
+        \node [below right, inner sep=.3cm] at (frontend.north west) {Front-end};
+
+        \node (directive) [minimum height=2.5cm, minimum width=4cm, draw=black, anchor=north west] at (.5,-1) {};
+        \node [below right, inner sep=.3cm] at (directive.north west) {Directive};
+
+        \node (service) [minimum height=2.5cm, minimum width=4cm, draw=black, anchor=north west] at (5,-1) {};
+        \node [below right, inner sep=.3cm] at (service.north west) {Service};
+
+        \node (controller) [draw=black, anchor=north west] at (1, -2) {Controller};
+        \node (memory) [draw=black, anchor=north west] at (5.5, -2) {Memory};
+
+        \node (backend) [draw=black!30, color=black!30, minimum height=4cm, minimum width=4cm, anchor=north west] at (12,0) {Back-end};
+
+        \draw[->, >=latex, thick, transform canvas={yshift=2mm}] (controller) -- (service);
+        \draw[<-, >=latex, thick, transform canvas={yshift=-2mm}] (controller) -- (service);
+        \draw[->, >=latex, thick, transform canvas={yshift=2mm}, color=black!30] (service) -- (service-|backend.west);
+        \draw[<-, >=latex, thick, transform canvas={yshift=-2mm}, color=black!30] (service) -- (service-|backend.west);
+    \end{tikzpicture}
+    \caption{Schema illustrating data flow for Flok. In the front-end, the controller of directives ask for data to services. Those service should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
+    \label{fig.dealingWithoutBackend}
 \end{figure}
 
 We were not trying to build a fully working application without backend.

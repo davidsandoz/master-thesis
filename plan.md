@@ -6,11 +6,17 @@
 	- User centered design
 - Personas
 - User Story Mapping
+- Information architecture
 - Wireframing
 - Prototyping
-- Information architecture
-- Front-end implementation
+- Front-end
 	1. Architecture
-	- Design decisions 	
+	- Implementation and Design decisions
+        1. Ideas
+        - Ideas classification
+        - Messages
+        - Fork
+        - Recap
+        - Activity
 - User testing
 - Conclusion

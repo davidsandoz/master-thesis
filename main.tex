@@ -360,9 +360,16 @@ We also estimated that it would bring us valuable feedback to improve the front-
 Not having a back-end implies some restrictions.
 First, it means that once the Angular app is loaded in the browser, everything is happening in the browser only and there is no communication with the server, except to get static files such as images.
 Therefore, interaction between two users is not possible.
-Then, no back-end means no database and no saved data.
-Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files.
+Then, no back-end also means no database and no saved data.
+Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files (see figure \ref{fig.dealingWithoutBackend}).
 Therefore the user can still use and evolve in the app.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/dealingWithoutBackend.png}
+\caption{Schema illustrating data flow for Flok. In the front-end, the controller of directives ask for data to services. Those service should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
+\label{fig.dealingWithoutBackend}
+\end{figure}
 
 We were not trying to build a fully working application without backend.
 Therefore we still kept in mind an architecture that would communicate with a back-end by simulating calls to it, even though we just get the data from memory.

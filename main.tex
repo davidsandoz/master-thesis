@@ -192,10 +192,10 @@ In addition to the focus it gives on the users, USM enables the discussion withi
 User story maps can be done with software tools which make it easier to edit and share. However, team collaboration is enhanced when people are facing a physical user story map made of sticky notes, which is what has been done for this project.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/flokUsmEvolution.png}
-\caption{Evolution of the user story map for Flok}
-\label{fig.flokUsmEvolution}
+    \centering
+    \includegraphics[width=\textwidth]{images/flokUsmEvolution.png}
+    \caption{Evolution of the user story map for Flok}
+    \label{fig.flokUsmEvolution}
 \end{figure}
 
 The user story map constantly evolves throughout the development of the project.
@@ -204,10 +204,10 @@ Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in th
 
 % TODO Still subject to change until I hand in the report. Change the story description accordingly
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
-\caption{Current state of the user story map for Flok}
-\label{fig.flokUsmCurrent}
+    \centering
+    \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
+    \caption{Current state of the user story map for Flok}
+    \label{fig.flokUsmCurrent}
 \end{figure}
 
 The green sticky notes represent actions by users and the blue ones indicate which user are doing the actions.
@@ -269,10 +269,10 @@ Also, a message must be either an image, a file, a system information or a comme
 
 % TODO decide what to do with hashtags, keywords and links that are currently not supported in the platform
 \begin{sidewaysfigure}[!ht]
-\centering
-\includegraphics[width=\textwidth]{images/erDiagram.pdf}
-\caption{The entity-relationship diagram of Flok, representing its information architecture}
-\label{fig.erDiagram}
+    \centering
+    \includegraphics[width=\textwidth]{images/erDiagram.pdf}
+    \caption{The entity-relationship diagram of Flok, representing its information architecture}
+    \label{fig.erDiagram}
 \end{sidewaysfigure}
 
 \clearpage
@@ -290,10 +290,10 @@ This is what made us change the name for \emph{idea}. It is also more human – 
 This shows that we were able avoid having to change a single line of code to apply this change as it was detected before we start the first prototype.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/originalRecapWireframes.png}
-\caption{Original wireframe design of the recap page. From left to right: the main recap page, the recap page of one idea in the topic, the dialog asking if we want to see an item in its context, an item highlighted in its context.}
-\label{fig.originalRecapWireframes}
+    \centering
+    \includegraphics[width=\textwidth]{images/originalRecapWireframes.png}
+    \caption{Original wireframe design of the recap page. From left to right: the main recap page, the recap page of one idea in the topic, the dialog asking if we want to see an item in its context, an item highlighted in its context.}
+    \label{fig.originalRecapWireframes}
 \end{figure}
 
 You can notice in the wireframes of figure \ref{fig.originalRecapWireframes} that we choose to represent the app in a mobile screen.
@@ -322,10 +322,10 @@ To avoid having to create a full visual design, we decided to use the component 
 This lightweight library, with the use of some HTML, CSS and simple Javascript, enabled us to quickly have a prototype with a solid visual design (see figure \ref{fig.firstPrototypeScreenshots}).
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/firstPrototypeScreenshots.png}
-\caption{Screenshots of Flok first prototype using \emph{Material Design Lite}}
-\label{fig.firstPrototypeScreenshots}
+    \centering
+    \includegraphics[width=\textwidth]{images/firstPrototypeScreenshots.png}
+    \caption{Screenshots of Flok first prototype using \emph{Material Design Lite}}
+    \label{fig.firstPrototypeScreenshots}
 \end{figure}
 
 Improvements and features have been progressively added to the prototype.
@@ -342,16 +342,14 @@ Hence, Javascript and the \emph{MEAN stack} seemed quite appropriate.
 These are also technologies in which \emph{Nothing Interactive} has good experience with.
 This means that regarding the front-end we went for a single page application made with \emph{AngularJS}.
 
-As we were satisfied with the result of using \emph{Material Design} for the prototype, we wanted to continue following those guidelines.
-Obviously, \emph{Material Design Lite} was not enough, therefore we had to use another implementation.
-Looking at the different alternatives and knowing that we were going to use \emph{AngularJS}, the decision to use \emph{Angular Material}\footnote{\url{https://material.angularjs.org}} was straightforward.
+As we were satisfied with the result of using Material Design for the prototype, we wanted to continue following those guidelines.
+Obviously, Material Design Lite was not enough, therefore we had to use another implementation.
+Looking at the different alternatives and knowing that we were going to use AngularJS, the decision to use \emph{Angular Material}\footnote{\url{https://material.angularjs.org}} was straightforward.
 
-There are different ways to build an \emph{AngularJS} application.
+There are different ways to build an AngularJS application.
 Therefore it was important that we clearly define how we were going to structure it.
 \emph{Nothing Interactive} has some internal guidelines, but with the arrival of \emph{Angular 2}, it seemed to be a good time to re-think those guidelines in order to write code that would enable an easy transition to this disruptive new version of the framework.
 Hence, we made some adaptations based an Angular Style Guide written by John Papa\footnote{\url{https://github.com/johnpapa/angular-styleguide}}, which is endorsed by the Angular team.
-
-% TODO: give detail on the app internal structure? Schema of relationship between services, directives, controllers, templates, models
 
 Unfortunately, our great focus on building the front-end and having the best user experience possible did not gave us time to build a functional back-end for the app.
 At some point we had to take the decision between either building the back-end, or doing the user testing.
@@ -359,10 +357,11 @@ The latter seemed more important as it would (in)validate our assumptions regard
 We also estimated that it would bring us valuable feedback to improve the front-end.
 
 Not having a back-end implies some restrictions.
-First, it means that once the Angular app is loaded in the browser, everything is happening in the browser only and there is no communication with the server, except to get static files such as images.
+First, it means that once the AngularJS app is loaded in the browser, everything is happening in the browser only and there is no communication with the server, except to get static files such as images.
 Therefore, interaction between two users is not possible.
 Then, no back-end also means no database and no saved data.
-Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files (see figure \ref{fig.dealingWithoutBackend}).
+Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files.
+This is shown in figure \ref{fig.dealingWithoutBackend}, where directives, controllers and service are concepts coming from AngularJS.
 Therefore the user can still use and evolve in the app.
 
 \begin{figure}[!htb]
@@ -387,7 +386,7 @@ Therefore the user can still use and evolve in the app.
         \draw[->, >=latex, thick, transform canvas={yshift=2mm}, color=black!30] (service) -- (service-|backend.west);
         \draw[<-, >=latex, thick, transform canvas={yshift=-2mm}, color=black!30] (service) -- (service-|backend.west);
     \end{tikzpicture}
-    \caption{Schema illustrating data flow for Flok. In the front-end, the controller of directives ask for data to services. Those service should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
+    \caption{Schema illustrating data flow for Flok. In the front-end, the controllers of directives ask for data to services. Those services should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
     \label{fig.dealingWithoutBackend}
 \end{figure}
 
@@ -418,10 +417,19 @@ To do so, one of the idea follower had to start a poll asking all the followers 
 The goal here was to reflect a common decision.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/promotionPoll.png}
-\caption{Screenshots of Flok prototype featuring the promotion poll}
-\label{fig.promotionPoll}
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/promotionPoll_dialog.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/promotionPoll_question.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/promotionPoll_approved.png}
+    \end{subfigure}
+    \caption{Screenshots of Flok prototype featuring the promotion poll}
+    \label{fig.promotionPoll}
 \end{figure}
 
 Then we realized the process can actually get complicated.
@@ -437,19 +445,29 @@ The change is instantly applied.
 Now there might be disagreement within the followers, but they are all in the same team and they can discuss that.
 And as it is so simple to change the classification, they can easily reversed their decisions.
 Having simplified this action also enabled us to implement an interactive way for the user to update the classification from desktop, by drag and dropping ideas in \emph{Kanban}\footnote{\url{https://en.wikipedia.org/wiki/Kanban}} columns (see figure \ref{fig.classificationDragAndDrop}).
+You will also notice that these columns are color-coded in order to make it even more clearer for the users to understand what can be executed.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/classificationSelect.png}
-\caption{Screenshots of Flok front-end featuring the simple classification update of an idea}
-\label{fig.classificationSelect}
+    \null\hfill
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/classificationSelect_selected.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/classificationSelect_selecting.png}
+    \end{subfigure}
+    \hfill\null
+    \caption{Screenshots of Flok front-end featuring the simple classification update of an idea}
+    \label{fig.classificationSelect}
 \end{figure}
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/classificationDragAndDrop.png}
-\caption{Screenshots of Flok front-end featuring the drag and drop of an idea from a classification to another}
-\label{fig.classificationDragAndDrop}
+    \centering
+    \includegraphics[width=\textwidth]{images/classificationDragAndDrop.png}
+    \caption{Screenshots of Flok front-end featuring the drag and drop of an idea from a classification to another}
+    \label{fig.classificationDragAndDrop}
 \end{figure}
 
 \FloatBarrier
@@ -466,10 +484,10 @@ Therefore we decided to add the \emph{deleted} message type, where the content o
 Like this the relations are kept.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/messageView.png}
-\caption{Screenshot of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
-\label{fig.messageView}
+    \centering
+    \includegraphics[width=.32\textwidth]{images/messageView.png}
+    \caption{Screenshot of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
+    \label{fig.messageView}
 \end{figure}
 
 \subsubsection{Fork}
@@ -489,10 +507,23 @@ Clicking on the fork symbol in the Ideas Overview will bring to the fork navigat
 We can also get there by clicking on the number of forks from the view of an idea.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/forks.png}
-\caption{Screenshots of Flok front-end featuring forks visualization. On the left, the ideas that are forks or that have been forked are noticeable by a specific symbol symbol on the right. In the middle, it is indicated from which idea an idea has been forked from, as well as how many forks it is the source of. On the right, the forks navigation shows up to two parents or children fork level.}
-\label{fig.forks}
+    \centering
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/forks_ideasOverview.png}
+        \caption{The ideas that are forks or that have been forked are noticeable by a specific symbol symbol on the right.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/forks_idea.png}
+        \caption{In the idea view, it is indicated from which idea an idea has been forked from, as well as how many forks it is the source of.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/forks_navigation.png}
+        \caption{The forks navigation shows up to two parents or children fork level.}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring forks visualization.}
+    \label{fig.forks}
 \end{figure}
 
 \subsubsection{Recap}
@@ -588,10 +619,10 @@ Activity can be logged from anywhere in the application by using the \texttt{log
 All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{images/activity.png}
-\caption{Screenshot of Flok front-end featuring the activity of the platform}
-\label{fig.activity}
+    \centering
+    \includegraphics[width=.32\textwidth]{images/activity.png}
+    \caption{Screenshot of Flok front-end featuring the activity of the platform}
+    \label{fig.activity}
 \end{figure}
 
 \section{User testing}

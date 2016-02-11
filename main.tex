@@ -3,7 +3,6 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{graphicx} % To include images
-%\usepackage{color} % To have more colors and be able to define new one
 \usepackage{xcolor} % To have more colors and be able to define new one
 \usepackage{afterpage} % For the page background color
 \usepackage{listings} % To include code snippets
@@ -464,9 +463,8 @@ They have one author, they are part of one idea and they are either a comment, a
 When adding a message to a discussion, it can be the reply to another message and thus help to establish relations among messages (see figure \ref{fig.messageView}).
 For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
 We'd still like to mention the support of hashtags in comments.
-When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas.
+When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
 They are also going to be used in the recap view that we are talking about in section \ref{sec.recap}.
-%TODO add screenshot of hashtag page
 
 When we introduced the possibility to delete a message, it was really completely deleted.
 However, it also broke relations between messages and ideas, which are made through replies and forks.
@@ -474,10 +472,22 @@ Therefore we decided to add the \emph{deleted} message type, where the content o
 Like this the relations are kept.
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=.32\textwidth]{images/messageView.png}
-    \caption{Screenshot of Flok front-end featuring the message view. The message is highlighted, above we have the message it is replying to and below we have the replies.}
-    \label{fig.messageView}
+    \null\hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/messageView.png}
+        \caption{The message is highlighted, above we have the message it is replying to and below we have the replies.}
+        \label{fig.messageView}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/hashtagView.png}
+        \caption{The hashtag view list all the occurrences of a hashtag throughout all the ideas.}
+        \label{fig.hashtagView}
+    \end{subfigure}
+    \hfill\null
+    \caption{Screenshots of Flok front-end featuring messages and hashtags.}
 \end{figure}
 
 \subsubsection{Fork}

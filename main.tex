@@ -161,6 +161,7 @@ Moreover, we are not going through these different processes sequentially, but r
 Each of these steps enable us to discover new issues, new opportunities and we have then to reflect those in every step.
 
 % TODO What about integrating the "Product Design Process" of Nothing Interactive?
+% Answer: Not necessarily. It is quite complex to explain, what is already in this section might be enough
 
 \section{Personas}
 In order to embrace the user-centered design concept, we have to put ourselves in the shoes of the users we expect to use the platform. To do this, \emph{personas} were created.
@@ -252,7 +253,6 @@ The thickness of the lines and the fact they are an arrow or not also has a spec
 For instance, a person can post none or more messages, but a specific message is posted by exactly one person.
 Also, a message must be either an image, a file, a system information or a comment, and any of these four entities has to be a message.
 
-% TODO decide what to do with hashtags, keywords and links that are currently not supported in the platform
 \begin{sidewaysfigure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{images/erDiagram.pdf}
@@ -385,13 +385,34 @@ We are rather going to explain the components where some reflexion had to be mad
 \subsubsection{Ideas}
 Ideas are the main components of Flok.
 They are created by users and they have three different views.
-The main view gives the general information about the idea: author, creation date, description, classification (section \ref{sec.ideasClassification}), followers and relations with other ideas.
+The main view (figure \ref{fig.idea.main}) gives the general information about the idea: author, creation date, description, classification (section \ref{sec.ideasClassification}), followers and relations with other ideas.
 From here you can also trigger actions on the idea such as following, bookmarking, archiving and forking (section \ref{sec.fork}).
 The available actions depend of the status of the user (creator, follower) toward the idea.
-Then there is the discussion view where all the messages (section \ref{sec.messages}) related to the idea can be found.
+Then there is the discussion view (figure \ref{fig.idea.discussion}) where all the messages (section \ref{sec.messages}) related to the idea can be found.
 This is also where messages can be added to the discussion.
-Finally there is the recap view (section \ref{sec.recap}) which highlight the most important messages of the discussion.
-%TODO add screenshot of ideas three views
+Finally there is the recap view (figure \ref{fig.idea.recap} and section \ref{sec.recap}) which highlight the most important messages of the discussion.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/idea.png}
+        \caption{Main view}
+        \label{fig.idea.main}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/ideaDiscussion.png}
+        \caption{Discussion view}
+        \label{fig.idea.discussion}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+        \includegraphics[width=\textwidth]{images/ideaRecap.png}
+        \caption{Recap view}
+        \label{fig.idea.recap}
+    \end{subfigure}
+    \caption{Screenshots of Flok prototype featuring the different views of an idea}
+    \label{fig.idea}
+\end{figure}
 
 \subsubsection{Ideas classification}
 \label{sec.ideasClassification}
@@ -621,9 +642,9 @@ The actions that are logged in the activity are the following:
 \end{multicols}
 
 This activity feature is something we often see in social applications and therefore, it has been implemented in various ways.
-In prevision of any future integration with other external platforms, we decided to follow as closely as possible the \emph{W3C Activity Streams 2.0} standard \cite{Snell2015AS2}.
+In prevision of any future integration with other external platforms, we decided to follow as closely as possible the \emph{W3C Activity Streams 2.0} standard \cite{snell2015AS2}.
 Currently, it is still a working draft, and hence subject to change.
-The main efforts have been focused in respecting the properties of an \emph{Activity} object and in using the \emph{W3C Activity Vocabulary} \cite{Snell2015AV} when applicable.
+The main efforts have been focused in respecting the properties of an \emph{Activity} object and in using the \emph{W3C Activity Vocabulary} \cite{snell2015AV} when applicable.
 
 Activity can be logged from anywhere in the application by using the \texttt{log} method from \texttt{activityService}, an AngularJS factory.
 All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.

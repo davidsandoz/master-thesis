@@ -19,6 +19,7 @@
 \usepackage{layouts} %to get the text width in cm
 \usepackage{rotating} %to have some figures sideways.
 \usepackage{placeins} % To force floats to be placed before the beginning of next section
+\usepackage{parskip} % To add space between paragraphs
 
 \usepackage{tikz}
 \usepackage{pgf-umlsd}
@@ -26,9 +27,7 @@
 \usetikzlibrary{positioning,fit,calc}
 
 \setmainfont{Graublau Sans}
-% \defaultfontfeatures{Scale=MatchLowercase}
-% \setromanfont[Numbers=Uppercase]{FDI - GraublauSans-Regulat}
-% \setmonofont[Scale=0.90,Ligatures=NoCommon]{Courier}
+\setlength{\parindent}{1.5em}
 
 \definecolor{gray}{rgb}{0.4,0.4,0.4}
 \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
@@ -464,6 +463,10 @@ Messages are one of the central components of Flok.
 They have one author, they are part of one idea and they are either a comment, an image, a document, a system information or a deleted message.
 When adding a message to a discussion, it can be the reply to another message and thus help to establish relations among messages (see figure \ref{fig.messageView}).
 For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
+We'd still like to mention the support of hashtags in comments.
+When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas.
+They are also going to be used in the recap view that we are talking about in section \ref{sec.recap}.
+%TODO add screenshot of hashtag page
 
 When we introduced the possibility to delete a message, it was really completely deleted.
 However, it also broke relations between messages and ideas, which are made through replies and forks.
@@ -539,15 +542,15 @@ We give a weight to each message of the idea's discussion based on the following
         \item number of forks $f$
         \item is an image $i = 1 | 0$
         \item is a document $d = 1 | 0$
-        \item text length $t$
+        \item text length (in words) $t$
     \end{itemize}
 \end{multicols}
 
-The weight $w$ of message is then computed as follows.
+The weight of messages $w_m$ is then computed as follows.
 
 \begin{equation}
     \label{eq.messageWeightInRecap}
-    w = 4r + 3b + 2l + f + i + d + \frac{t}{500}
+    w_m = 4r + 3b + 2l + f + i + d + \frac{t}{250}
 \end{equation}
 
 The minimum weight for a message to be included in the recap is 1.
@@ -567,16 +570,26 @@ Hence the reason we give them less importance than bookmarks.
 They still have a factor 2 as they are used to show support or agreement.
 Forking a message means creating a new idea.
 Therefore, we could say that a message that has been forked is of great importance.
-It certainly is for the new created idea, but for the idea containing this message, it does not necessarily need to be highlighted in the recap.
-If it does, then it would get replies, bookmarks or likes that are going to make it appear there.
+It certainly is for the newly created idea, but for the idea containing this message, it does not necessarily have that much importance.
+If it does, then it would get replies, bookmarks or likes that are going to make it appear in the recap.
 This is why forks only have a factor 1 in the computation of a message weight.
 Then, we are adding 1 to the message weight if it is a document or an image.
 As these types of messages are more visual or bring more content than a simple comment, we decided they deserve from the beginning to have the minimum weight to appear in the recap.
 Finally, the text length of a comment also influence the weight of the message.
-If it has enough content, i.e. 500 characters, then it will appear in the recap.
+If it has enough content, i.e. 250 words, then it will appear in the recap.
 And the more it has, the bigger its weight will be, the higher it will be in the recap.
 
-Of course, for this simple algorithm, these factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
+In addition to messages, the recap view also features hashtags.
+To show them among the messages, they also have a weight $w_h$ based on the number of mentions $m$.
+
+\begin{equation}
+    \label{eq.hashtagWeightInRecap}
+    w_h = 0.5m
+\end{equation}
+
+Hence, a hashtag appears in the recap if it has at least two mentions in the discussion.
+
+Of course, for this simple algorithm, the given factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
 
 %TODO add screenshot of recap view from mobile and desktop
 

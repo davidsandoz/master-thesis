@@ -200,7 +200,7 @@ The green sticky notes represent actions by users and the blue ones indicate whi
 In the latest versions of the user story map, we can notice that the orange sticky notes entitle \emph{slices}, of the story.
 As said, the first row is the backbone.
 Below we have three slices R1, R2 and R3, \emph{R} meaning \emph{release}.
-It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok.
+It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok. For the Master project, we went implemented the front-end up to R2 and left in R3 parts of the stories we didn't deem necessary to have in an early version of Flok.
 
 Building this user story map was a bit more tricky than it can be for most others.
 Indeed, as Flok interest resides in the real-time interactions between its users, the story has to jump often from a user to another.
@@ -554,8 +554,17 @@ As we try to be close to the human way of doing, discussions in Flok give the sa
 However, this liberty let the user express her thoughts and that's why we want to keep it.
 Nevertheless, we want to highlight the most important points of the discussion, bubble up the good ideas.
 This is what the recap do.
-And to do so, it runs an algorithm which returns the most relevant messages and order them by importance.
+You already saw how it looks like on mobile in figure \ref{fig.idea.recap}.
+This same layout on a desktop would be quite inefficient, therefore we adapted the view to give a better experience when showing the recap on a large screen, as you can see in figure \ref{fig.recap.desktop}
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/recapDesktop.png}
+    \caption{Screenshot of Flok front-end featuring the recap view from a large screen}
+    \label{fig.recap.desktopa}
+\end{figure}
+
+To select the messages and show them in a specific order, it runs an algorithm which returns the most relevant messages and order them by importance.
 Such an algorithm should obviously run in the back-end of the system.
 But as explained in section \ref{sec.architecture}, we unfortunately don't have any back-end.
 That's why we implemented the recap algorithm in the front-end.
@@ -622,7 +631,7 @@ Hence, a hashtag appears in the recap if it has at least two mentions in the dis
 
 Of course, for this simple algorithm, the given factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
 
-%TODO add screenshot of recap view from mobile and desktop
+%TODO add screenshot of recap view from phone, tablet and desktop
 
 \subsubsection{Activity}
 The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself (see figure \ref{fig.activity}).

@@ -177,24 +177,9 @@ In general, the top row of cards represents the backbone of the story (from left
 In addition to the focus it gives on the users, USM enables the discussion within the team who builds it to create a shared understanding of the product.
 User story maps can be done with software tools which make it easier to edit and share. However, team collaboration is enhanced when people are facing a physical user story map made of sticky notes, which is what has been done for this project.
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{images/flokUsmEvolution.png}
-    \caption{Evolution of the user story map for Flok}
-    \label{fig.flokUsmEvolution}
-\end{figure}
-
 The user story map constantly evolves throughout the development of the project.
 In figure \ref{fig.flokUsmEvolution} you have an overview of how it evolved for Flok.
 Figure \ref{fig.flokUsmCurrent} shows you its state at the time of handing in this report.
-
-% TODO Still subject to change until I hand in the report. Change the story description accordingly
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
-    \caption{Current state of the user story map for Flok}
-    \label{fig.flokUsmCurrent}
-\end{figure}
 
 The green sticky notes represent actions by users and the blue ones indicate which user are doing the actions.
 In the latest versions of the user story map, we can notice that the orange sticky notes entitle \emph{slices}, of the story.
@@ -205,6 +190,21 @@ It helps to define clearly which part of the story are the most important and th
 Building this user story map was a bit more tricky than it can be for most others.
 Indeed, as Flok interest resides in the real-time interactions between its users, the story has to jump often from a user to another.
 This makes it also more difficult to follow when reading the story map.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/flokUsmEvolution.png}
+    \caption{Evolution of the user story map for Flok}
+    \label{fig.flokUsmEvolution}
+\end{figure}
+
+% TODO Still subject to change until I hand in the report. Change the story description accordingly
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
+    \caption{Current state of the user story map for Flok}
+    \label{fig.flokUsmCurrent}
+\end{figure}
 
 \FloatBarrier
 \subsubsection*{Story description}
@@ -253,7 +253,7 @@ The thickness of the lines and the fact they are an arrow or not also has a spec
 For instance, a person can post none or more messages, but a specific message is posted by exactly one person.
 Also, a message must be either an image, a file, a system information or a comment, and any of these four entities has to be a message.
 
-\begin{sidewaysfigure}[!ht]
+\begin{sidewaysfigure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{images/erDiagram.pdf}
     \caption{The entity-relationship diagram of Flok, representing its information architecture}
@@ -410,10 +410,11 @@ Finally there is the recap view (figure \ref{fig.idea.recap} and section \ref{se
         \caption{Recap view}
         \label{fig.idea.recap}
     \end{subfigure}
-    \caption{Screenshots of Flok prototype featuring the different views of an idea}
+    \caption{Screenshots of Flok front-end featuring the different views of an idea}
     \label{fig.idea}
 \end{figure}
 
+\FloatBarrier
 \subsubsection{Ideas classification}
 \label{sec.ideasClassification}
 Here there is actually not much to say regarding the implementation itself.
@@ -485,7 +486,15 @@ When adding a message to a discussion, it can be the reply to another message an
 For more details on the properties of each of these type and on the relations of messages with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
 We'd still like to mention the support of hashtags in comments.
 When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
-They are also going to be used in the recap view that we are talking about in section \ref{sec.recap}.
+
+Below each message, a list of actions is offered to the users.
+They can like the message, bookmark it, reply to it or fork it.
+Liking a message helps defining which messages have more value than others.
+This will notably be used for the recap view, which we are talking about in section \ref{sec.recap}.
+Bookmarking a message adds it in the bookmark list of the users who can access it from their profile.
+It is a way to save messages they want to easily access later.
+Message forking is covered in section \ref{sec.fork}.
+And if we are the author of a message, we have an additional \emph{three dots} button toggling a menu to either edit or delete a message.
 
 When we introduced the possibility to delete a message, it was really completely deleted.
 However, it also broke relations between messages and ideas, which are made through replies and forks.
@@ -561,7 +570,7 @@ This same layout on a desktop would be quite inefficient, therefore we adapted t
     \centering
     \includegraphics[width=\textwidth]{images/recapDesktop.png}
     \caption{Screenshot of Flok front-end featuring the recap view from a large screen}
-    \label{fig.recap.desktopa}
+    \label{fig.recap.desktop}
 \end{figure}
 
 To select the messages and show them in a specific order, it runs an algorithm which returns the most relevant messages and order them by importance.
@@ -631,10 +640,8 @@ Hence, a hashtag appears in the recap if it has at least two mentions in the dis
 
 Of course, for this simple algorithm, the given factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
 
-%TODO add screenshot of recap view from phone, tablet and desktop
-
 \subsubsection{Activity}
-The activity section of Flok shows the user the recent events occurring in ideas she follows and not triggered herself (see figure \ref{fig.activity}).
+The activity section of Flok shows to the user the recent events occurring in ideas she follows and not triggered by herself (see figure \ref{fig.activity}).
 This allow her to have a quick overview of everything that happened in the ideas she is interested in.
 If she wants to see her own activity, it is visible within her profile.
 The actions that are logged in the activity are the following:
@@ -657,6 +664,10 @@ The main efforts have been focused in respecting the properties of an \emph{Acti
 
 Activity can be logged from anywhere in the application by using the \texttt{log} method from \texttt{activityService}, an AngularJS factory.
 All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.
+
+This part of Flok did not receive as much improvement as other parts.
+Indeed, it is interesting to look at the activity in the platform to see what others are doing.
+But as interaction between users is not possible yet without a back-end, it was difficult to see the activity grow and therefore notice if the way it has been implemented is adapted.
 
 \begin{figure}[!htb]
     \centering

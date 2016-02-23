@@ -227,7 +227,7 @@ Back to Andrew's idea, after a while, Sergei joins the idea that he found throug
 He found the idea interesting and noticed that among the followers there were team mates he usually like their thinking.
 He catches up the discussion through the recap and among the highlighted items one image appealed him.
 He brings up the image in its context to see in more details what it is about.
-This makes him think about another idea so instead of replying at this point of the discussion, he rather decides to fork from the image to create a new idea in Flok.
+This makes him think about another idea so instead of replying at this point of the discussion, he rather decides to branch from the image to create a new idea in Flok.
 
 Initially new ideas are classified under the \emph{Incubating} label.
 This is not the case anymore for Andrew's idea which has evolved and became more mature and precise.
@@ -384,7 +384,7 @@ We are rather going to explain the components where some reflexion had to be mad
 Ideas are the main components of Flok.
 They are created by users and they have three different views.
 The main view (figure \ref{fig.idea.main}) gives the general information about the idea: author, creation date, description, classification (section \ref{sec.ideasClassification}), followers and relations with other ideas.
-From here you can also trigger actions on the idea such as following, bookmarking, archiving and forking (section \ref{sec.fork}).
+From here you can also trigger actions on the idea such as following, bookmarking, archiving and branching (section \ref{sec.branching}).
 The available actions depend of the status of the user (creator, follower) toward the idea.
 Then there is the discussion view (figure \ref{fig.idea.discussion}) where all the messages (section \ref{sec.messages}) related to the idea can be found.
 This is also where messages can be added to the discussion.
@@ -486,16 +486,16 @@ We'd still like to mention the support of hashtags in comments.
 When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
 
 Below each message, a list of actions is offered to the users.
-They can like the message, bookmark it, reply to it or fork it.
+They can like the message, bookmark it, reply to it or branch it.
 Liking a message helps defining which messages have more value than others.
 This will notably be used for the recap view, which we are talking about in section \ref{sec.recap}.
 Bookmarking a message adds it in the bookmark list of the users who can access it from their profile.
 It is a way to save messages they want to easily access later.
-Message forking is covered in section \ref{sec.fork}.
+Message branching is covered in section \ref{sec.branching}.
 And if we are the author of a message, we have an additional \emph{three dots} button toggling a menu to either edit or delete a message.
 
 When we introduced the possibility to delete a message, it was really completely deleted.
-However, it also broke relations between messages and ideas, which are made through replies and forks.
+However, it also broke relations between messages and ideas, which are made through replies and branches.
 Therefore we decided to add the \emph{deleted} message type, where the content of the message is deleted, but the object itself not.
 Like this the relations are kept.
 
@@ -518,40 +518,40 @@ Like this the relations are kept.
     \caption{Screenshots of Flok front-end featuring messages and hashtags.}
 \end{figure}
 
-\subsubsection{Fork}
-\label{sec.fork}
+\subsubsection{Branching}
+\label{sec.branching}
 If we try to look at how humans think, they initially have an idea that they brainstorm by themselves or with other people.
 It then generates new ideas based on the brainstorm and it can go on until an idea really gets developed and executed.
-We tried to represent that in Flok with the \emph{fork} feature.
-Basically, you can create an idea by forking another idea or a message.
+We tried to represent that in Flok with the \emph{branching} feature.
+Basically, you can create an idea by branching another idea or a message.
 The word comes from the software development world, when a copy of source code is made to start developing on it independently.
 However it works a bit differently in Flok.
 The main goal is to create the relation between the initial idea or message to the newly created idea.
 Nothing is automatically taken from the source which means that the new idea form is blank and the user still has to describe her idea.
 Once the idea is created, the discussion can begin, as any new idea.
 The difference lies in the relation created, which goals is to represent the human way of thinking.
-We wanted to make these relations more visible and therefore implemented visualizations showing forks relations (see figure \ref{fig.forks}).
-Clicking on the fork symbol in the Ideas Overview will bring to the fork navigation.
-We can also get there by clicking on the number of forks from the view of an idea.
+We wanted to make these relations more visible and therefore implemented visualizations showing branches relations (see figure \ref{fig.branches}).
+Clicking on the branch symbol in the Ideas Overview will bring to the idea tree navigation.
+We can also get there by clicking on the number of branches from the view of an idea.
 
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{.32\textwidth}
-        \includegraphics[width=\textwidth]{images/forks_ideasOverview.png}
-        \caption{The ideas that are forks or that have been forked are noticeable by a specific symbol symbol on the right.}
+        \includegraphics[width=\textwidth]{images/branches_ideasOverview.png}
+        \caption{The ideas that are branches or that have been branched are noticeable by a specific symbol symbol on the right.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{.32\textwidth}
-        \includegraphics[width=\textwidth]{images/forks_idea.png}
-        \caption{In the idea view, it is indicated from which idea an idea has been forked from, as well as how many forks it is the source of.}
+        \includegraphics[width=\textwidth]{images/branches_idea.png}
+        \caption{In the idea view, it is indicated from which idea an idea has been branched from, as well as how many branches it is the source of.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{.32\textwidth}
-        \includegraphics[width=\textwidth]{images/forks_navigation.png}
-        \caption{The forks navigation shows up to two parents or children fork level.}
+        \includegraphics[width=\textwidth]{images/branches_navigation.png}
+        \caption{The idea tree navigation shows up to two parents or children branch level.}
     \end{subfigure}
-    \caption{Screenshots of Flok front-end featuring forks visualization.}
-    \label{fig.forks}
+    \caption{Screenshots of Flok front-end featuring an idea tree visualization.}
+    \label{fig.branches}
 \end{figure}
 
 \subsubsection{Recap}
@@ -586,7 +586,7 @@ We give a weight to each message of the idea's discussion based on the following
         \item number of replies $r$
         \item number of bookmarks $b$
         \item number of likes $l$
-        \item number of forks $f$
+        \item number of branches $f$
         \item is an image $i = 1 | 0$
         \item is a document $d = 1 | 0$
         \item text length (in words) $t$
@@ -615,11 +615,11 @@ When users bookmark a message, it affects their bookmark list and they will ther
 The likes however, are only affecting the message which receives them and not the users who give them.
 Hence the reason we give them less importance than bookmarks.
 They still have a factor 2 as they are used to show support or agreement.
-Forking a message means creating a new idea.
-Therefore, we could say that a message that has been forked is of great importance.
+Branching a message means creating a new idea.
+Therefore, we could say that a message that has been branched is of great importance.
 It certainly is for the newly created idea, but for the idea containing this message, it does not necessarily have that much importance.
 If it does, then it would get replies, bookmarks or likes that are going to make it appear in the recap.
-This is why forks only have a factor 1 in the computation of a message weight.
+This is why branches only have a factor 1 in the computation of a message weight.
 Then, we are adding 1 to the message weight if it is a document or an image.
 As these types of messages are more visual or bring more content than a simple comment, we decided they deserve from the beginning to have the minimum weight to appear in the recap.
 Finally, the text length of a comment also influence the weight of the message.
@@ -646,7 +646,7 @@ The actions that are logged in the activity are the following:
 \begin{multicols}{2}
     \begin{itemize}
         \item creating an idea
-        \item forking an idea
+        \item branching an idea
         \item following an idea
         \item moving an idea from a classification to another
         \item renaming an idea

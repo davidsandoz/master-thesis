@@ -33,62 +33,6 @@
 \definecolor{cyan}{rgb}{0.0,0.6,0.6}
 \definecolor{rocketorange}{rgb}{1,.4,0}
 
-\lstset{
-    basicstyle=\footnotesize\ttfamily,
-    breaklines=true,
-    columns=fullflexible,
-    showstringspaces=false,
-    commentstyle=\color{gray}\upshape,
-    frame=l,
-    captionpos=b,
-    % Line numbers
-    xleftmargin={0.75cm},
-    numbers=left,
-    stepnumber=1,
-    firstnumber=1,
-    numberfirstline=true
-}
-
-\lstdefinelanguage{XML}{
-  morestring=[b]",
-  morestring=[s]{>}{<},
-  morecomment=[s]{<?}{?>},
-  stringstyle=\color{black},
-  identifierstyle=\color{darkblue},
-  keywordstyle=\color{cyan},
-  morekeywords={xmlns,version,type,title} % list your attributes here
-}
-
-\lstdefinelanguage{JavaScript}{
-  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  morecomment=[s]{/*}{*/},
-  morecomment=[l]//,
-  morestring=[b]",
-  morestring=[b]'
-}
-
-\lstdefinelanguage{HTML5}{
-        language=html,
-        sensitive=true,
-        alsoletter={<>=-},
-        otherkeywords={
-        % HTML tags
-        <html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
-        <canvas, \/canvas>, <script>, </script>, </body>, </html>, <!, html>, <style>, </style>, ><
-        },
-        ndkeywords={
-        % General
-        =,
-        % HTML attributes
-        charset=, id=, width=, height=,
-        % CSS properties
-        border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:
-        },
-        morecomment=[s]{<!--}{-->},
-        tag=[s]
-}
-
-
 % Customized commands
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
@@ -698,7 +642,7 @@ They can see discussions between several people about one idea, which could help
 \subsection{Tests issues}
 Doing user testing via Skype was a first for me, but also for the company.
 Therefore there was a lot of unknown regarding how it is going to happen.
-The first unexpected event was that the first test user did not have an up to date browser installed on her computer.
+One unexpected event was that the first test user did not have an up to date browser installed on her computer.
 Older browser compatibility is something that has been put aside for now and therefore the layout of the app was not correct at several places.
 As the test was limited in time, we did not asked the user to download a more recent browser and tried to test the app with the broken layout.
 Fortunately, almost all the functionalities were working correctly.
@@ -757,8 +701,111 @@ The layout issue might be the reason, hence we waited for the next test to see i
 \subsection{Second test session}
 The second test user was a 42 years old man.
 
+Unfortunately, we noticed at the beginning of the test that we forgot to deploy all the changes made since the first test on the staging server.
+In the end it wasn't such an issue.
+Indeed, as this test user was using an updated browser, the user experience was already different and there was almost no overlap in the “problems” he faced with the ones from the first test user.
+Therefore, the test still made us notice quite a few other improvements we could make to the front-end.
+This can also be due to the fact that his experience in computer usage was significantly more advanced than the first test user and hence, has quite a different perspective when interacting with a user interface.
+
+He started the test by exploring the app.
+He went quickly through all the views he could, first without creating or editing any content.
+
+Then he created a first idea without adding files, but just giving a title.
+It was interesting to see that there was no problem for him whereas the first test user had difficulties to realize she has to enter a title (as she only gave an image).
+
+However, this test user did not realize neither that he could drag and drop ideas, even with the message “\emph{Create an idea or drag an idea here to change its status}” visible in the empty columns.
+The beginning of the sentence seemed to be confusing as he tried to click on it to create an idea.
+We made a few changes to improve this issue.
+First we re-formulated the sentence to “\emph{Drag and drop idea here to change its status}”.
+We also added a drag handle icon on the ideas in the columns as well as a shadow to increase the feeling that it can be moved.
+
+After that, he went to complete his profile as suggested in the non-intrusive message at the top of the ideas overview, appearing after having created a first idea.
+This comforted us in the usefulness of this feature.
+
+Only then he went to see the idea he created.
+From there he clicked on the “\emph{Start the conversation}” button and added messages.
+He tried the actions buttons below the messages.
+He guessed that the bookmark button meant bookmarking, but he was not sure at all and clicking on it did not help him understand as it just colored it and incremented the counter.
+He said that if it is indeed a bookmark, he would still not know where to look for it.
+This made us add a small notification showing when bookmarking a message or an idea.
+It also contains a button that the user can click to go see his bookmarks.
+
+When he clicked on the fork (previous name of the branch feature) button of a message, and created a new idea, he was a bit confused as he expected the forked idea to be just inside the message and not as a whole new idea.
+This comforted us that the changes we brought after the first user test, by renaming the feature and giving more explanations in the form to branch an idea, are indeed needed.
+
+After creating other ideas and adding new messages, he said he was expecting the ideas to be ordered according to recent activity.
+Afterwards he realized that he could reorder ideas by himself and hence rather have them ordered by priority, which he preferred.
+This also made him notice that this is how he could move ideas from a column to another.
+
+Then he navigated between several ideas through the links in the idea view which lead to the parent or children ideas saying that the way it works makes sense to him.
+He went as well on the fork navigation view, which he found pretty clear.
+
+We then proceeded with the second part of the test with initial mock content.
+
+He went in one of the ideas in the overview and had clicked on the button to add a comment.
+He was surprised to see all the comments as nothing on the main view of the idea was telling him how big already was the discussion.
+To prevent this reaction, we added a message counter in the idea main view
+
+Then he visited the recap page of an idea and wasn't really sure of how useful it would be for him.
+He said he prefers having the message in chronological order.
+We did not make any change here as we wanted to see how the last test user would react.
+
+After he went to the discovery view, where he saw that ideas can be followed.
+He also understood that doing so made the idea move from the discovery view to the ideas view.
+
+When visiting the activity view, he expected to see his own activity, which was only visible from his profile.
+Initially we thought that the users of the app would not like to see what they did as they know about it, but it appears that in the end it is rather counter intuitive.
+Hence we added the user activity to this view as well.
+
+Finally he went to his profile and in his ideas view, he expected to see not only the ideas he created, but also the one he is following.
+But this would not be so different than the ideas overview.
+Therefore, what we did is to rather simplify this view by removing the classification indication and not showing the author avatar as it is always the user itself in this view.
+
+In the end he said he likes the interface.
+More precisely, he appreciated the choice of colors, the clarity, the easy navigation and the fact that it is not cluttered.
+He also mentioned that the app was running pretty fast.
+As a person working in the music events domain, he would imagine Flok working very well for the organization of bands or festivals.
+
 \subsection{Third test session}
 The third test user was a 26 years old woman.
+
+She started the test by exploring all the different views and eventually created a new idea.
+In the idea view, she noticed that she can change the classification of the idea with the dedicated drop down menu.
+She clicked on the button to bookmark the idea, which she immediately understood thanks to the small notification we implemented between the previous test and this one.
+
+Going back to the ideas overview, she saw the banner telling her that she can complete her profile, but she did not do it.
+We realized that the banner suggest to complete the profile, but doesn't say why it would be good to do it.
+Therefore we added that it is necessary to do to be able to add comments.
+
+She noticed that ideas can be dragged thanks to the visual changes we brought since the previous test.
+However, she didn't get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
+To fix that we made the whole box draggable again, but kept the drag handle as it could be a visual cue for other users.
+
+Then, in the idea view, she saw the message counter and wanted to see the discussion by clicking on the counter, which was not working.
+We added the message counter after the previous user test and it didn't seem to have any issue visually, but we didn't really test the usability in this short period of time.
+Seeing her not being able to access the discussion while clicking on the counter, made it obvious that this should be possible, so we did it.
+
+We then proceeded with the second part of the test with initial mock content.
+
+She went in one idea and noticed that she can access the recap view.
+She found the view interesting and imagined that it could indeed be quite useful.
+
+Then she went to the discussion of an idea and tested the different actions that can be done with one message.
+She understood them all quite well, including the branching action where more explanations are given after that the two previous test users got a bit confused with the feature.
+Going in the tree navigation view made her create more branches in order to see how the view evolved and in the end she said that it reacted as she expected.
+
+After that she tried the search feature and immediately understood the “\emph{Show bookmarks}” switch toggle.
+However, she got really confused with the filters to show or hide Ideas, comments, images or documents.
+It was not clear for her when they were activated or not.
+To fix that we changed the design by making a filter toggle less visible when deactivated, and by adding colors when it is activated.
+
+She liked the achievements section of her profile, but wasn't sure of the difference between the number of ideas followed and the number of ideas she took part in.
+The latter counts the ideas where she posted at least one comment.
+The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to “\emph{the number of ideas in which you wrote at least one message}”.
+
+She said repetitively during the test that she likes the simplicity of the interface.
+In the end, she added that this simplicity helps to understand some of the concepts that are a bit complicated.
+She also said that at the beginning she needed some minutes to get into it, but that it gets pretty clear after having used the app.
 
 %TODO explain what we couldn't test with user, such as interaction with other users.
 

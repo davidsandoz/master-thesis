@@ -475,16 +475,10 @@ Nothing is automatically taken from the source which means that the new idea for
 Once the idea is created, the discussion can begin, as any new idea.
 The difference lies in the relation created, which goals is to represent the human way of thinking.
 We wanted to make these relations more visible and therefore implemented visualizations showing branches relations (see figure \ref{fig.branches}).
-Clicking on the branch symbol in the Ideas Overview will bring to the idea tree navigation.
-We can also get there by clicking on the number of branches from the view of an idea.
+Clicking on the number of branches from the view of an idea will bring to the idea tree navigation.
 
 \begin{figure}[!htb]
-    \centering
-    \begin{subfigure}[t]{.32\textwidth}
-        \includegraphics[width=\textwidth]{images/branches_ideasOverview.png}
-        \caption{The ideas that are branches or that have been branched are noticeable by a specific symbol symbol on the right.}
-    \end{subfigure}
-    \hfill
+    \null\hfill
     \begin{subfigure}[t]{.32\textwidth}
         \includegraphics[width=\textwidth]{images/branches_idea.png}
         \caption{In the idea view, it is indicated from which idea an idea has been branched from, as well as how many branches it is the source of.}
@@ -494,6 +488,7 @@ We can also get there by clicking on the number of branches from the view of an 
         \includegraphics[width=\textwidth]{images/branches_navigation.png}
         \caption{The idea tree navigation shows up to two parents or children branch level.}
     \end{subfigure}
+    \hfill\null
     \caption{Screenshots of Flok front-end featuring an idea tree visualization.}
     \label{fig.branches}
 \end{figure}
@@ -774,12 +769,13 @@ In the idea view, she noticed that she can change the classification of the idea
 She clicked on the button to bookmark the idea, which she immediately understood thanks to the small notification we implemented between the previous test and this one.
 
 Going back to the ideas overview, she saw the banner telling her that she can complete her profile, but she did not do it.
-We realized that the banner suggest to complete the profile, but doesn't say why it would be good to do it.
-Therefore we added that it is necessary to do to be able to add comments.
+We realized that the banner suggest to complete the profile to let others know who the user is, but it doesn't say what it would enable the user to do.
+Therefore we added that it is necessary to be able to add comments.
 
 She noticed that ideas can be dragged thanks to the visual changes we brought since the previous test.
 However, she didn't get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
-To fix that we made the whole box draggable again, but kept the drag handle as it could be a visual cue for other users.
+As she is the only test user that had this new interface, we did not make the change to have the whole box draggable again.
+It would be better to do further user tests to check if the behavior is the same with other people using the new interface.
 
 Then, in the idea view, she saw the comment counter and wanted to see the discussion by clicking on the counter, which was not working.
 We added the comment counter after the previous user test and it didn't seem to have any issue visually, but we didn't really test the usability in this short period of time.
@@ -791,20 +787,20 @@ She went in one idea and noticed that she can access the recap view.
 She found the view interesting and imagined that it could indeed be quite useful.
 
 Then she went to the discussion of an idea and tested the different actions that can be done with one comment.
-She understood them all quite well, including the branching action where more explanations are given after that the two previous test users got a bit confused with the feature.
+She understood them all quite well, including the branching action, where more explanations are given after that the two previous test users got a bit confused with the feature.
 Going in the tree navigation view made her create more branches in order to see how the view evolved and in the end she said that it reacted as she expected.
 
 After that she tried the search feature and immediately understood the “\emph{Show bookmarks}” switch toggle.
 However, she got really confused with the filters to show or hide Ideas, text comments, images or documents.
 It was not clear for her when they were activated or not.
-To fix that we changed the design by making a filter toggle less visible when deactivated, and by adding colors when it is activated.
+To fix that, we changed the design by making a filter toggle less visible when deactivated, and colored when it is activated.
 
 She liked the achievements section of her profile, but wasn't sure of the difference between the number of ideas followed and the number of ideas she took part in.
 The latter counts the ideas where she posted at least one comment.
-The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to the number of ideas in which you wrote at least one comment.
+The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to the number of ideas \emph{in which you wrote at least one comment}.
 
 She said repetitively during the test that she likes the simplicity of the interface.
-In the end, she added that this simplicity helps to understand some of the concepts that are a bit complicated.
+In the end, she added that this simplicity helps to understand the concepts that are a bit complicated.
 She also said that at the beginning she needed some minutes to get into it, but that it gets pretty clear after having used the app.
 
 %TODO explain what we couldn't test with user, such as interaction with other users.

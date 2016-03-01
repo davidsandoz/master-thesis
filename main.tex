@@ -140,7 +140,6 @@ This makes it also more difficult to follow when reading the story map.
     \label{fig.flokUsmEvolution}
 \end{figure}
 
-% TODO Still subject to change until I hand in the report. Change the story description accordingly
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{images/flokUsmCurrent.jpg}
@@ -170,7 +169,7 @@ He looks at this person profile and more precisely in which other ideas she is a
 Back to Andrew's idea, after a while, Sergei joins the idea that he found through the \emph{discovery} section of the app.
 He found the idea interesting and noticed that among the followers there were team mates he usually like their thinking.
 He catches up the discussion through the recap and among the highlighted items one image appealed him.
-He brings up the image in its context to see in more details what it is about.
+He brings up the image in its context, in the discussion, to see in more details what it is about.
 This makes him think about another idea so instead of replying at this point of the discussion, he rather decides to branch from the image to create a new idea in Flok.
 
 Initially new ideas are classified under the \emph{Incubating} label.
@@ -288,8 +287,8 @@ First, it means that once the AngularJS app is loaded in the browser, everything
 Therefore, interaction between two users is not possible.
 Then, no back-end also means no database and no saved data.
 Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files.
-This is shown in figure \ref{fig.dealingWithoutBackend}, where directives, controllers and service are concepts coming from AngularJS.
 Therefore the user can still use and evolve in the app.
+This is shown in figure \ref{fig.dealingWithoutBackend}, where directives, controllers and service are concepts coming from AngularJS.
 
 \begin{figure}[!htb]
     \centering
@@ -317,7 +316,7 @@ Therefore the user can still use and evolve in the app.
     \label{fig.dealingWithoutBackend}
 \end{figure}
 
-We were not trying to build a fully working application without backend.
+We were not trying to build a fully working application without back-end.
 Therefore we still kept in mind an architecture that would communicate with a back-end by simulating calls to it, even though we just get the data from memory.
 
 \subsection{Implementation and design decisions}
@@ -634,6 +633,8 @@ That is were the second part of the test session come in.
 There, the test users start using the app with some initial mock content.
 They can see discussions between several people about one idea, which could help them understand other aspects of the app.
 
+\emph{N.B. The screenshots in this section have been cropped to highlight a specific part of the user interface.}
+
 \subsection{Tests issues}
 Doing user testing via Skype was a first for me, but also for the company.
 Therefore there was a lot of unknown regarding how it is going to happen.
@@ -651,10 +652,27 @@ Indeed, observing her behavior highlighted some bad interface implementation whi
 
 The first thing she did during the test is creating an idea. This comforted us about the good visibility of the plus (+) button to add an idea.
 In the form to create the idea, she first noticed the drop zone for files, where she added an image.
-Then she tried to click on the \emph{Share your idea} button, but it was disabled as she did not write anything in the idea description, which is mandatory.
+Then she tried to click on the \emph{Share your idea} button, but it was disabled as she did not write anything in the idea description, which is mandatory (see figure \ref{fig.tests.addIdeaForm.before}).
 She did not understand why it was not working as she did not even noticed the text field.
 It was obvious for us that you should write a description for your idea and therefore, did not realize that it was necessary to highlight this field more.
 What we did to improve the user experience is to make the text field error comment visible not only after having clicked once on the field and leaving it empty, but also when clicking on the \emph{Share your idea} button.
+We also placed the field closer to the button (see figure \ref{fig.tests.addIdeaForm.after}).
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/addIdeaForm_before.png}
+        \caption{Before user testing. The button to submit the button is disabled when no description is given and if we click on it, nothing happens.}
+        \label{fig.tests.addIdeaForm.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/addIdeaForm_after.png}
+        \caption{After user testing. Clicking on the button without having filled the description make the error message appear. The description field has also been moved closer to the button.}
+        \label{fig.tests.addIdeaForm.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the form to add an idea.}
+    \label{fig.tests.addIdeaForm}
+\end{figure}
 
 From the idea view, she updated the idea classification to “Need to decide”.
 This means she clearly understand that there was a possible action when clicking on the classification and that she could change it when the dropdown menu appeared.
@@ -665,12 +683,46 @@ At the time when she did the test, this feature was called \emph{forking}.
 When she forked the idea and noticed the result, she said she was confused as she was rather expecting the text she wrote for the forked idea to be a new comment within the original idea and not another idea.
 This made us think about the naming of this feature, which induced the new \emph{branch} name.
 We deduced that this name is more meaningful for any user as they can easily make the analogy with a tree and its branches splitting in more branches.
+See figure \ref{fig.tests.forkBranchForm} to notice the difference.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/forkBranchForm_before.png}
+        \caption{Before user testing. The branching feature was called forking.}
+        \label{fig.tests.forkBranchForm.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/forkBranchForm_after.png}
+        \caption{After user testing. The feature is called branching instead of forking and has an explanatory text.}
+        \label{fig.tests.forkBranchForm.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the idea view.}
+    \label{fig.tests.forkBranchForm}
+\end{figure}
 
 After that she tried to add a comment in the discussion but noticed that she could not when she saw the comment saying that she has to complete her profile first.
 So, she clicked on the given link to perform the profile completion, but once on the profile tab of the person view, she rather went through all the other tabs rather than changing her first and last name.
 Therefore it was pretty clear that we should clarify what has to be done for the user.
 To do so, on the profile tab of the person view, we added a comment in bold text stating that “\emph{to complete your profile, enter your first and last name}”.
 Also, instead of having the first and last name filled with the placeholder “Anonymous” name, they are now empty.
+See figure \ref{fig.tests.profileForm} to notice the difference.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/profileForm_before.png}
+        \caption{Before user testing. The field were filled with the “Anonymous” placeholder.}
+        \label{fig.tests.profileForm.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/profileForm_after.png}
+        \caption{After user testing. The fields are empty if users did not provide names themselves and a message tell the user what is needed for the profile to be complete and what it will allow them to do.}
+        \label{fig.tests.profileForm.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the form to edit one own profile.}
+    \label{fig.tests.profileForm}
+\end{figure}
 
 We then proceeded with the second part of the test with initial mock content.
 
@@ -680,8 +732,24 @@ Same thing for the discovery and activity views.
 Then she looked at her mock profile, and in the bookmark section, she first understood that this was some kind of direct comments between users of Flok.
 After thinking by herself about it, she finally got that there were ideas or comments from ideas that a user can bookmark to have them in one place.
 This anyway made us realize that it was not immediately clear.
-The comments notably, were just consisting of their text content and the author avatar.
-We now have changed that so that they also feature the name of the idea they are from.
+The comments notably, were just consisting of their text content and the author avatar (see figure \ref{fig.tests.bookmarks.before}).
+We now have changed that so that they also feature the name of the idea they are from (see figure \ref{fig.tests.bookmarks.after}).
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/bookmarks_before.png}
+        \caption{Before user testing. It was not clear from where the comment bookmarks are coming.}
+        \label{fig.tests.bookmarks.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/bookmarks_after.png}
+        \caption{After user testing. The comment bookmarks show the name of the idea they belong to. We can also notice that the links in the comments are automatically detected.}
+        \label{fig.tests.bookmarks.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the bookmarks view.}
+    \label{fig.tests.bookmarks}
+\end{figure}
 
 She said she like that she can have a global view of the ideas and how “everything is linked together”.
 She also liked to be able to see other person profile and their activity in the platform.
@@ -713,6 +781,22 @@ The beginning of the sentence seemed to be confusing as he tried to click on it 
 We made a few changes to improve this issue.
 First we re-formulated the sentence to “\emph{Drag and drop idea here to change its status}”.
 We also added a drag handle icon on the ideas in the columns as well as a shadow to increase the feeling that it can be moved.
+See figure \ref{fig.tests.ideasOverview} to notice the difference.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/ideasOverview_before.png}
+        \caption{Before user testing. It was not clearly visible that ideas could be drag and dropped and the text in the drop placeholders could be misleading.}
+        \label{fig.tests.ideasOverview.before}
+    \end{subfigure}
+    \begin{subfigure}[t]{\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/ideasOverview_after.png}
+        \caption{After user testing. Ideas have a shadow and a drag handle, making it more obvious that they can be moved. The icon indicating that an idea is new has also been removed as it didn't bring much value.}
+        \label{fig.tests.ideasOverview.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the ideas overview.}
+    \label{fig.tests.ideasOverview}
+\end{figure}
 
 After that, he went to complete his profile as suggested in the non-intrusive comment at the top of the ideas overview, appearing after having created a first idea.
 This comforted us in the usefulness of this feature.
@@ -722,11 +806,18 @@ From there he clicked on the “\emph{Start the conversation}” button and adde
 He tried the actions buttons below the comments.
 He guessed that the bookmark button meant bookmarking, but he was not sure at all and clicking on it did not help him understand as it just colored it and incremented the counter.
 He said that if it is indeed a bookmark, he would still not know where to look for it.
-This made us add a small notification showing when bookmarking a comment or an idea.
+This made us add a small notification showing when bookmarking a comment or an idea (see figure \ref{fig.tests.bookmarkNotification}).
 It also contains a button that the user can click to go see his bookmarks.
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/user_tests/bookmarkNotification.png}
+    \caption{Screenshots of Flok front-end featuring the bookmark notification.}
+    \label{fig.tests.bookmarkNotification}
+\end{figure}
+
 When he clicked on the fork (previous name of the branch feature) button of a comment, and created a new idea, he was a bit confused as he expected the forked idea to be just inside the comment and not as a whole new idea.
-This comforted us that the changes we brought after the first user test, by renaming the feature and giving more explanations in the form to branch an idea, are indeed needed.
+This comforted us that the changes we brought after the first user test, by renaming the feature and giving more explanations in the form to branch an idea, are indeed needed (see figure \ref{fig.tests.forkBranchForm.after}).
 
 After creating other ideas and adding new comments, he said he was expecting the ideas to be ordered according to recent activity.
 Afterwards he realized that he could reorder ideas by himself and hence rather have them ordered by priority, which he preferred.
@@ -739,7 +830,22 @@ We then proceeded with the second part of the test with initial mock content.
 
 He went in one of the ideas in the overview and had clicked on the button to add a comment.
 He was surprised to see all the comments as nothing on the main view of the idea was telling him how big already was the discussion.
-To prevent this reaction, we added a comment counter in the idea main view
+To prevent this reaction, we added a comment counter in the idea main view (see figure \ref{fig.tests.ideaView}).
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.5\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/ideaView_before.png}
+        \caption{Before user testing. It was not clearly whereas the idea had already been discussed a lot or not.}
+        \label{fig.tests.ideaView.before}
+    \end{subfigure}
+    \begin{subfigure}[t]{.5\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/ideaView_after.png}
+        \caption{After user testing. A comment counter gives the number of comments posted in the discussion. There is also a lightly colored frame around the idea card indicating its classification.}
+        \label{fig.tests.ideaView.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the ideas overview.}
+    \label{fig.tests.ideaView}
+\end{figure}
 
 Then he visited the recap page of an idea and wasn't really sure of how useful it would be for him.
 He said he prefers having the comment in chronological order.
@@ -751,10 +857,44 @@ He also understood that doing so made the idea move from the discovery view to t
 When visiting the activity view, he expected to see his own activity, which was only visible from his profile.
 Initially we thought that the users of the app would not like to see what they did as they know about it, but it appears that in the end it is rather counter intuitive.
 Hence we added the user activity to this view as well.
+See figure \ref{fig.tests.activity} to notice the difference.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/activity_before.png}
+        \caption{Before user testing. The activity was not featuring the user own activity and the icons represent the type of activity.}
+        \label{fig.tests.activity.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/activity_after.png}
+        \caption{After user testing. The activity view also contains the user own activity and highlight the actor of the activity by using its avatar instead of an icon.}
+        \label{fig.tests.activity.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the activity view.}
+    \label{fig.tests.activity}
+\end{figure}
 
 Finally he went to his profile and in his ideas view, he expected to see not only the ideas he created, but also the one he is following.
 But this would not be so different than the ideas overview.
 Therefore, what we did is to rather simplify this view by removing the classification indication and not showing the author avatar as it is always the user itself in this view.
+See figure \ref{fig.tests.personIdeas} to notice the difference.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/personIdeas_before.png}
+        \caption{Before user testing. The view was still showing the classification of an idea.}
+        \label{fig.tests.personIdeas.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/personIdeas_after.png}
+        \caption{After user testing. The view has been simplified and does not show the avatar of the user as they are all from the same user.}
+        \label{fig.tests.personIdeas.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the user own ideas view.}
+    \label{fig.tests.personIdeas}
+\end{figure}
 
 In the end he said he likes the interface.
 More precisely, he appreciated the choice of colors, the clarity, the easy navigation and the fact that it is not cluttered.
@@ -764,20 +904,22 @@ As a person working in the music events domain, he would imagine Flok working ve
 \subsection{Third test session}
 The third test user was a 26 years old woman.
 
+For this test we did deploy the changes we brought after the last two tests.
+
 She started the test by exploring all the different views and eventually created a new idea.
 In the idea view, she noticed that she can change the classification of the idea with the dedicated drop down menu.
 She clicked on the button to bookmark the idea, which she immediately understood thanks to the small notification we implemented between the previous test and this one.
 
 Going back to the ideas overview, she saw the banner telling her that she can complete her profile, but she did not do it.
 We realized that the banner suggest to complete the profile to let others know who the user is, but it doesn't say what it would enable the user to do.
-Therefore we added that it is necessary to be able to add comments.
+Therefore we changed the text from “To let others know who came up with this idea, complete your profile.” to “To let others know who came up with this idea, \emph{and for you to be able to add comments,} complete your profile.”.
 
-She noticed that ideas can be dragged thanks to the visual changes we brought since the previous test.
+She noticed that ideas can be dragged thanks to the visual changes we brought since the previous test (see figure \ref{fig.tests.ideasOverview}).
 However, she didn't get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
 As she is the only test user that had this new interface, we did not make the change to have the whole box draggable again.
 It would be better to do further user tests to check if the behavior is the same with other people using the new interface.
 
-Then, in the idea view, she saw the comment counter and wanted to see the discussion by clicking on the counter, which was not working.
+Then, in the idea view, she saw the comment counter (see figure \ref{fig.tests.ideaView.after}) and wanted to see the discussion by clicking on the counter, which was not working.
 We added the comment counter after the previous user test and it didn't seem to have any issue visually, but we didn't really test the usability in this short period of time.
 Seeing her not being able to access the discussion while clicking on the counter, made it obvious that this should be possible, so we did it.
 
@@ -792,12 +934,44 @@ Going in the tree navigation view made her create more branches in order to see 
 
 After that she tried the search feature and immediately understood the “\emph{Show bookmarks}” switch toggle.
 However, she got really confused with the filters to show or hide Ideas, text comments, images or documents.
-It was not clear for her when they were activated or not.
-To fix that, we changed the design by making a filter toggle less visible when deactivated, and colored when it is activated.
+It was not clear for her when they were activated or not (see figure \ref{fig.tests.search.before}).
+To fix that, we changed the design by making a filter toggle less visible when deactivated, and colored when it is activated (see figure \ref{fig.tests.search.after}).
 
-She liked the achievements section of her profile, but wasn't sure of the difference between the number of ideas followed and the number of ideas she took part in.
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/search_before.png}
+        \caption{Before user testing. It is not really clear if the visual state of a filter toggle mean that the filter is activated or deactivated.}
+        \label{fig.tests.search.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/search_after.png}
+        \caption{After user testing. The visual state of the toggles is clearer by making the deactivated state lighter and adding color to the activated state.}
+        \label{fig.tests.search.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the search results view.}
+    \label{fig.tests.search}
+\end{figure}
+
+She liked the achievements section of her profile, but wasn't sure of the difference between the number of ideas followed and the number of ideas she took part in (see figure \ref{fig.tests.achievements.before}).
 The latter counts the ideas where she posted at least one comment.
-The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to the number of ideas \emph{in which you wrote at least one comment}.
+The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to the number of ideas \emph{in which you wrote comments} (see figure \ref{fig.tests.achievements.after}).
+
+\begin{figure}[!htb]
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/achievements_before.png}
+        \caption{Before user testing. It is not clear what taking part to an idea mean and could be mingled with the number of following ideas.}
+        \label{fig.tests.achievements.before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.495\textwidth}
+        \includegraphics[width=\textwidth]{images/user_tests/achievements_after.png}
+        \caption{After user testing. The confusing achievement now says that it is the ideas where we wrote comments and has been moved closer to the following ideas to make the user notice they are not the same.}
+        \label{fig.tests.achievements.after}
+    \end{subfigure}
+    \caption{Screenshots of Flok front-end featuring the achievements overview.}
+    \label{fig.tests.achievements}
+\end{figure}
 
 She said repetitively during the test that she likes the simplicity of the interface.
 In the end, she added that this simplicity helps to understand the concepts that are a bit complicated.

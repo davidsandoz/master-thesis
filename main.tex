@@ -36,6 +36,8 @@
 % Customized commands
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
+\DeclareUrlCommand\email{\urlstyle{rm}}
+
 %Acknowledgements environment
 \newenvironment{acknowledgments}
   {\renewcommand{\abstractname}{Acknowledgments}
@@ -51,6 +53,14 @@
 \begin{acknowledgments}
     \lipsum[1] %TODO
 \end{acknowledgments}
+\vfill
+\textbf{Author/student's contact details}\\
+David \textsc{Sandoz}\\
+Les Allées 29\\
+2300 La Chaux-de-Fonds\\
+
+\noindent
+\email{contact@davidsandoz.ch}
 \newpage
 
 \vspace*{5cm}
@@ -127,7 +137,7 @@ The green sticky notes represent actions by users and the blue ones indicate whi
 In the latest versions of the user story map, we can notice that the orange sticky notes entitle \emph{slices}, of the story.
 As said, the first row is the backbone.
 Below we have three slices R1, R2 and R3, \emph{R} meaning \emph{release}.
-It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok. For the Master project, we went implemented the front-end up to R2 and left in R3 parts of the stories we didn't deem necessary to have in an early version of Flok.
+It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok. For the Master project, we went implemented the front-end up to R2 and left in R3 parts of the stories we did not deem necessary to have in an early version of Flok.
 
 Building this user story map was a bit more tricky than it can be for most others.
 Indeed, as Flok interest resides in the real-time interactions between its users, the story has to jump often from a user to another.
@@ -312,7 +322,7 @@ This is shown in figure \ref{fig.dealingWithoutBackend}, where directives, contr
         \draw[->, >=latex, thick, transform canvas={yshift=2mm}, color=black!30] (service) -- (service-|backend.west);
         \draw[<-, >=latex, thick, transform canvas={yshift=-2mm}, color=black!30] (service) -- (service-|backend.west);
     \end{tikzpicture}
-    \caption{Schema illustrating data flow for Flok. In the front-end, the controllers of directives ask for data to services. Those services should ask the back-end for the information stored in the database. But as there's no back-end, services get the information from their own memory.}
+    \caption{Schema illustrating data flow for Flok. In the front-end, the controllers of directives ask for data to services. Those services should ask the back-end for the information stored in the database. But as there is no back-end, services get the information from their own memory.}
     \label{fig.dealingWithoutBackend}
 \end{figure}
 
@@ -425,7 +435,7 @@ Comments are one of the central components of Flok.
 They have one author, they are part of one idea and they are either a note (a text comment), an image, a document, a system information or a deleted comment.
 When adding a comment to a discussion, it can be the reply to another comment and thus help to establish relations among comments (see figure \ref{fig.commentView}).
 For more details on the properties of each of these type and on the relations of comments with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
-We'd still like to mention the support of hashtags in comments.
+We would still like to mention the support of hashtags in comments.
 When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
 
 Below each comment, a list of actions is offered to the users.
@@ -496,7 +506,7 @@ Clicking on the number of branches from the view of an idea will bring to the id
 \label{sec.recap}
 We mentioned earlier the fact that brainstorming is a process which can easily get messy, which is normal and natural.
 As we try to be close to the human way of doing, discussions in Flok give the same liberty, which can bring the same messiness.
-However, this liberty let the user express her thoughts and that's why we want to keep it.
+However, this liberty let the user express her thoughts and that is why we want to keep it.
 Nevertheless, we want to highlight the most important points of the discussion, bubble up the good ideas.
 This is what the recap do.
 You already saw how it looks like on mobile in figure \ref{fig.idea.recap}.
@@ -511,8 +521,8 @@ This same layout on a desktop would be quite inefficient, therefore we adapted t
 
 To select the comments and show them in a specific order, it runs an algorithm which returns the most relevant comments and order them by importance.
 Such an algorithm should obviously run in the back-end of the system.
-But as explained in section \ref{sec.architecture}, we unfortunately don't have any back-end.
-That's why we implemented the recap algorithm in the front-end.
+But as explained in section \ref{sec.architecture}, we unfortunately do not have any back-end.
+That is why we implemented the recap algorithm in the front-end.
 
 Initially we wanted to take into consideration the text content of the comments and use some topic modeling to discover the different main topics discussed.
 The \emph{Latent Dirichlet Allocation} \cite{blei2003latent} model seemed to be a good one to use for the algorithm.
@@ -541,7 +551,7 @@ The weight of comments $w_m$ is then computed as follows.
 The minimum weight for a comment to be included in the recap is 1.
 This means that all images or documents are by default included.
 We are doing so in order to very rapidly have some content in the recap when an idea is created.
-As the comments in the recap are ordered by weight, if images or documents don't get more weight, they will simply stay at the bottom.
+As the comments in the recap are ordered by weight, if images or documents do not get more weight, they will simply stay at the bottom.
 
 You will notice in equation \ref{eq.commentWeightInRecap} that some of the comment properties are weighted with different factors.
 Replies have the most importance with a factor 4.
@@ -701,10 +711,10 @@ See figure \ref{fig.tests.forkBranchForm} to notice the difference.
     \label{fig.tests.forkBranchForm}
 \end{figure}
 
-After that she tried to add a comment in the discussion but noticed that she could not when she saw the comment saying that she has to complete her profile first.
+After that she tried to add a comment in the discussion but noticed that she could not when she saw the message saying that she has to complete her profile first.
 So, she clicked on the given link to perform the profile completion, but once on the profile tab of the person view, she rather went through all the other tabs rather than changing her first and last name.
 Therefore it was pretty clear that we should clarify what has to be done for the user.
-To do so, on the profile tab of the person view, we added a comment in bold text stating that “\emph{to complete your profile, enter your first and last name}”.
+To do so, on the profile tab of the person view, we added a message in bold text stating that “\emph{to complete your profile, enter your first and last name}”, and a second line informing of what it will enable the user to do.
 Also, instead of having the first and last name filled with the placeholder “Anonymous” name, they are now empty.
 See figure \ref{fig.tests.profileForm} to notice the difference.
 
@@ -751,7 +761,7 @@ We now have changed that so that they also feature the name of the idea they are
     \label{fig.tests.bookmarks}
 \end{figure}
 
-She said she like that she can have a global view of the ideas and how “everything is linked together”.
+She said she like having a global view of the ideas and how “everything is linked together”.
 She also liked to be able to see other person profile and their activity in the platform.
 Finally she mentioned that the app could be useful for companies.
 
@@ -765,7 +775,7 @@ The layout issue might be the reason, hence we waited for the next test to see i
 The second test user was a 42 years old man.
 
 Unfortunately, we noticed at the beginning of the test that we forgot to deploy all the changes made since the first test on the staging server.
-In the end it wasn't such an issue.
+In the end it was not such an issue.
 Indeed, as this test user was using an updated browser, the user experience was already different and there was almost no overlap in the “problems” he faced with the ones from the first test user.
 Therefore, the test still made us notice quite a few other improvements we could make to the front-end.
 This can also be due to the fact that his experience in computer usage was significantly more advanced than the first test user and hence, has quite a different perspective when interacting with a user interface.
@@ -791,7 +801,7 @@ See figure \ref{fig.tests.ideasOverview} to notice the difference.
     \end{subfigure}
     \begin{subfigure}[t]{\textwidth}
         \includegraphics[width=\textwidth]{images/user_tests/ideasOverview_after.png}
-        \caption{After user testing. Ideas have a shadow and a drag handle, making it more obvious that they can be moved. The icon indicating that an idea is new has also been removed as it didn't bring much value.}
+        \caption{After user testing. Ideas have a shadow and a drag handle, making it more obvious that they can be moved. The icon indicating that an idea is new has also been removed as it did not bring much value.}
         \label{fig.tests.ideasOverview.after}
     \end{subfigure}
     \caption{Screenshots of Flok front-end featuring the ideas overview.}
@@ -843,11 +853,11 @@ To prevent this reaction, we added a comment counter in the idea main view (see 
         \caption{After user testing. A comment counter gives the number of comments posted in the discussion. There is also a lightly colored frame around the idea card indicating its classification.}
         \label{fig.tests.ideaView.after}
     \end{subfigure}
-    \caption{Screenshots of Flok front-end featuring the ideas overview.}
+    \caption{Screenshots of Flok front-end featuring the idea view.}
     \label{fig.tests.ideaView}
 \end{figure}
 
-Then he visited the recap page of an idea and wasn't really sure of how useful it would be for him.
+Then he visited the recap page of an idea and was not really sure of how useful it would be for him.
 He said he prefers having the comment in chronological order.
 We did not make any change here as we wanted to see how the last test user would react.
 
@@ -908,19 +918,19 @@ For this test we did deploy the changes we brought after the last two tests.
 
 She started the test by exploring all the different views and eventually created a new idea.
 In the idea view, she noticed that she can change the classification of the idea with the dedicated drop down menu.
-She clicked on the button to bookmark the idea, which she immediately understood thanks to the small notification we implemented between the previous test and this one.
+She clicked on the button to bookmark the idea, which she immediately understood thanks to the small notification we implemented between the previous test and this one (see figure \ref{fig.tests.bookmarkNotification}).
 
 Going back to the ideas overview, she saw the banner telling her that she can complete her profile, but she did not do it.
-We realized that the banner suggest to complete the profile to let others know who the user is, but it doesn't say what it would enable the user to do.
+We realized that the banner suggest to complete the profile to let others know who the user is, but it does not say what it would enable the user to do.
 Therefore we changed the text from “To let others know who came up with this idea, complete your profile.” to “To let others know who came up with this idea, \emph{and for you to be able to add comments,} complete your profile.”.
 
 She noticed that ideas can be dragged thanks to the visual changes we brought since the previous test (see figure \ref{fig.tests.ideasOverview}).
-However, she didn't get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
+However, she did not get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
 As she is the only test user that had this new interface, we did not make the change to have the whole box draggable again.
 It would be better to do further user tests to check if the behavior is the same with other people using the new interface.
 
 Then, in the idea view, she saw the comment counter (see figure \ref{fig.tests.ideaView.after}) and wanted to see the discussion by clicking on the counter, which was not working.
-We added the comment counter after the previous user test and it didn't seem to have any issue visually, but we didn't really test the usability in this short period of time.
+We added the comment counter after the previous user test and it did not seem to have any issue visually, but we did not really test the usability in this short period of time.
 Seeing her not being able to access the discussion while clicking on the counter, made it obvious that this should be possible, so we did it.
 
 We then proceeded with the second part of the test with initial mock content.
@@ -953,7 +963,7 @@ To fix that, we changed the design by making a filter toggle less visible when d
     \label{fig.tests.search}
 \end{figure}
 
-She liked the achievements section of her profile, but wasn't sure of the difference between the number of ideas followed and the number of ideas she took part in (see figure \ref{fig.tests.achievements.before}).
+She liked the achievements section of her profile, but was not sure of the difference between the number of ideas followed and the number of ideas she took part in (see figure \ref{fig.tests.achievements.before}).
 The latter counts the ideas where she posted at least one comment.
 The simple fact that we feel the need to explain it here means that it requires clarification and that is why we simply changed it to the number of ideas \emph{in which you wrote comments} (see figure \ref{fig.tests.achievements.after}).
 
@@ -977,9 +987,45 @@ She said repetitively during the test that she likes the simplicity of the inter
 In the end, she added that this simplicity helps to understand the concepts that are a bit complicated.
 She also said that at the beginning she needed some minutes to get into it, but that it gets pretty clear after having used the app.
 
-%TODO explain what we couldn't test with user, such as interaction with other users.
-
 \section{Conclusion}
+
+% Summary of what has been done
+For this project, we have taken a user-centered approach to test the hypothesis, by focusing first on the user needs.
+We started by defining Personas to enforce ourselves to see our product as if we were its user.
+We used User Story Mapping to create descriptions of how users are going to interact with Flok.
+We constructed an entity-relationship diagram to represent the information architecture of the product.
+We built wireframes to quickly have a rough overview of the whole product and detect as early as possible where the user interaction can be improved.
+We designed a usable visual prototype to have a better idea of the look and feel without having to worry about the logic, letting us to be flexible to frequent and drastic changes.
+We implemented a functional front-end in the form of a single page application, currently without back-end, but with all the data saved in memory for the duration of a session.
+We conducted three user testing sessions which allowed us to gather valuable feedback and make significant improvements regarding the user interaction with Flok.
+
+% Summary of results
+At this point of the project, we have a working front-end.
+Time limitation made us foster user testing at the expense of the back-end implementation.
+The drawback is that the current lack of back-end do not allow us to truly experience the collaboration side of the app.
+The advantage is that user testing really allowed us to have a more human experience by using the feedback we got to make the interface simpler and more intuitive.
+The test sessions did not only reveal what needed improvement, but also what was already well done.
+For most of the components, the test users interacted with the interface as expected and understood what was going on.
+Moreover, when we did make improvements to the app between two test sessions, they were proven to be good.
+The test users also gave us direct feedback about what they think of the app.
+We mainly retain that they liked the interface and how its simplicity helps to understand the concepts that could be complicated to grasp, such as branching for instance.
+The second phase of the tests gave the test users a glimpse at what collaboration would look like within Flok.
+They are feeling was that the app could be useful for companies or organizations.
+
+
+% Relevance of results
+It is difficult to make strong conclusions based only on three test sessions.
+However, the feedback we have got and the improvements they allowed us to make are really promising and tell us that we are going in the right direction.
+
+% Hypothesis proven?
+
+% What could have been done better
+% - plan better in order to be able to do both user testing and back-end implementation
+% - if we could have had both, we could have been able to test interaction between users and notice how it could have improved collaboration
+% - more user testing => more feedback => more solid conclusions
+
+% What is still to be done
+% - back-end (database, better recap algorithm, live communication through chat, live sync between different devices)
 
 \clearpage
 \bibliographystyle{ieeetr}

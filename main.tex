@@ -65,7 +65,16 @@ Les Allées 29\\
 
 \vspace*{5cm}
 \begin{abstract}
-    \lipsum[1] %TODO
+    Humans have ideas and they are generally improved when those are shared and discussed among several people.
+    However, it can get quite messy and our goal is to design and develop a platform – Flok – that significantly improves collaboration around ideas, while providing an experience as human as possible.
+    To do so, we take a user-centered approach by using processes such as the creation of personas, user story mapping, wireframing and prototyping.
+    Based on those processes and a well defined information architecture, we build a front-end application.
+    The back-end is not implemented but has an important role in order to have a final fully working product.
+    It is not implemented because we choose to prioritize user testing.
+    We are able to improve the front-end and verify some of our assumptions by doing three test sessions.
+    This is a bit weak to make strong conclusions, but the feedback we get is promising and tells us we are going in the right direction.
+    Building the back-end is one of the important next steps that will allow us to have a fully working application.
+    Combining that with more user testing will allow us to validate or invalidate further assumptions.
 \end{abstract}
 \newpage
 
@@ -991,8 +1000,8 @@ She also said that at the beginning she needed some minutes to get into it, but 
 
 % Summary of what has been done
 For this project, we have taken a user-centered approach to test the hypothesis, by focusing first on the user needs.
-We started by defining Personas to enforce ourselves to see our product as if we were its user.
-We used User Story Mapping to create descriptions of how users are going to interact with Flok.
+We started by defining personas to enforce ourselves to see our product as if we were its user.
+We used user story mapping to create descriptions of how users are going to interact with Flok.
 We constructed an entity-relationship diagram to represent the information architecture of the product.
 We built wireframes to quickly have a rough overview of the whole product and detect as early as possible where the user interaction can be improved.
 We designed a usable visual prototype to have a better idea of the look and feel without having to worry about the logic, letting us to be flexible to frequent and drastic changes.
@@ -1020,12 +1029,19 @@ However, the feedback we have got and the improvements they allowed us to make a
 % Hypothesis proven?
 
 % What could have been done better
-% - plan better in order to be able to do both user testing and back-end implementation
-% - if we could have had both, we could have been able to test interaction between users and notice how it could have improved collaboration
-% - more user testing => more feedback => more solid conclusions
+That is quite unfortunate that we had to make this hard choice between back-end and user testing.
+If we could have had both, we could have been able to test real interaction between users and notice how it could have improved collaboration.
+Maybe if we had taken more time at the beginning to plan a bit on the longer term, we could have been able to do both.
+However, it would have been at the cost of another part of the project where we would have had less time to accomplish.
+Then it is a question of balance between the different components of the project and defining where we put the priority.
+In this case we prioritized the research on user-centered design.
+Moreover, it would have been a good thing to do more user testing in order to have more feedback to validate or invalidate some of our left assumptions and hence to have more solid results in the end.
 
 % What is still to be done
-% - back-end (database, better recap algorithm, live communication through chat, live sync between different devices)
+It is clear that one of the important next step is to implement the back-end.
+This will enable us to have a persistent database and a way to access it, either with a REST API or using GraphQL\footnote{\url{https://facebook.github.io/graphql/}}.
+As the app is collaboration-oriented, it would be important to insure real-time synchronization.
+That would be not only between different users, but also if a single user change device and want to seamlessly continue where she left.
 
 \clearpage
 \bibliographystyle{ieeetr}

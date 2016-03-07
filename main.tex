@@ -1,5 +1,5 @@
 % !TEX program = xelatex
-\documentclass[a4paper,12pt, oneside]{article}
+\documentclass[a4paper,12pt,twoside]{article}
 \usepackage[utf8]{inputenc}
 
 \usepackage{graphicx} % To include images
@@ -42,6 +42,7 @@
 \pagenumbering{roman}
 
 \input{./title.tex}
+\cleardoublepage
 
 \vspace*{5cm}
 \begin{acknowledgments}
@@ -61,7 +62,7 @@ Les Allées 29\\
 
 \noindent
 \email{contact@davidsandoz.ch}
-\newpage
+\cleardoublepage
 
 \vspace*{5cm}
 \begin{abstract}
@@ -70,16 +71,17 @@ Les Allées 29\\
     To do so, we took a user-centered approach by using processes such as the creation of personas, user story mapping, wireframing and prototyping.
     Based on those processes and a well defined information architecture, we built a front-end application.
     The back-end also has an important role in order to have a final fully working product.
-    Unfortunately, it was not implemented because we chose to prioritize user testing.
+    However, we let the experience drive the product, not vice versa.
+    Therefore, to make a good experience, we prioritized user testing over implementing the back-end as the given time frame was not allowing us to do both.
     We were able to improve the front-end and verify some of our assumptions by doing three test sessions.
-    This is a bit weak to make strong conclusions, but the feedback we got is promising and tells us we are going in the right direction.
+    The feedback we got is promising and tells us we are going in the right direction.
     Building the back-end is one of the important next steps that will allow us to have a fully working application.
     Combining that with more user testing will allow us to validate or invalidate further assumptions.
 \end{abstract}
-\newpage
+\cleardoublepage
 
 \tableofcontents
-\newpage
+\cleardoublepage
 
 \setcounter{page}{1}
 \pagenumbering{arabic}
@@ -288,7 +290,7 @@ The visual result being good, it seemed to be the right moment to start working 
 \label{sec.architecture}
 We wanted the platform to be fully usable from any device.
 The easiest way to implement that is to have a responsive web application.
-Hence, Javascript and the \emph{MEAN stack} seemed quite appropriate.
+Hence, Javascript and the \emph{MEAN stack}\footnote{\url{https://wikipedia.org/wiki/MEAN_(software_bundle)#}} seemed quite appropriate.
 These are also technologies in which Nothing Interactive has good experience with.
 This means that regarding the front-end we went for a single page application made with AngularJS.
 
@@ -345,7 +347,7 @@ Therefore we still kept in mind an architecture that would communicate with a ba
 
 \subsection{Implementation and design decisions}
 We are not going to describe the implementation of every component as some of them are quite straightforward.
-We are rather going to explain the components where some reflexion had to be made or decisions had to be taken.
+We are rather going to explain the components where some reflection had to be made or decisions had to be taken.
 
 \subsubsection{Ideas}
 Ideas are the main components of Flok.
@@ -448,7 +450,7 @@ They have one author, they are part of one idea and they are either a note (a te
 When adding a comment to a discussion, it can be the reply to another comment and thus help to establish relations among comments (see figure \ref{fig.commentView}).
 For more details on the properties of each of these type and on the relations of comments with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
 
-We would still like to mention the support of hashtags in comments.
+We would still like to mention the support of hashtags\footnote{\url{https://wikipedia.org/wiki/Hashtag}} in comments.
 When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
 
 Below each comment, a list of actions is offered to the users.
@@ -1043,8 +1045,198 @@ This will enable us to have a persistent database and a way to access it, either
 As the app is collaboration-oriented, it would be important to insure real-time synchronization.
 That would not only be between different users, but also if a single user change device and want to seamlessly continue where she left.
 
-\clearpage
+\cleardoublepage
 \bibliographystyle{ieeetr}
 \bibliography{main}
+
+\cleardoublepage
+\appendix
+\section{User flows}
+This appendix illustrate various user flows in Flok.
+Some may be described or mentioned in the report, but nothing shows exactly how it looks like as it is not a necessity in their context.
+
+It is also possible to try out the latest version of Flok's front-end at the following URL: \url{https://flok.preview.ch}. It requires to log in with the following credentials:
+\begin{itemize}
+    \item Username: flok
+    \item Password: kovokukako-76!
+\end{itemize}
+
+\subsection{Adding an idea}
+\label{sec.addingIdea}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addIdea_1.png}
+        \caption{When loading Flok for the first time, the ideas overview is empty as we haven't created any idea and aren't following any neither. To add an idea, we must tap on the plus (+) blue button.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addIdea_2.png}
+        \caption{The form to add a new idea, with a descriptive text field and drop zone for files. To enable devices without drag-and-drop abilities, taping on the drop zone will show the file selector.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addIdea_3.png}
+        \caption{Once the idea added, we are brought to the ideas overview where the newly added idea can be seen. As a new user, we are suggested to complete our profile (see section \ref{sec.completingProfile}), notably to be able to comment about any ideas.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Completing your profile}
+\label{sec.completingProfile}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_completingProfile_1.png}
+        \caption{As a new user, after having created our first idea (see section \ref{sec.addingIdea}), we are suggested to complete our profile. Clicking on the button to do so bring us to this form.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_completingProfile_2.png}
+        \caption{In this form we can give our first and last name and define our avatar.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_completingProfile_3.png}
+        \caption{Taping on the save button will immediately update our profile.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Updating the name of an idea}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_updateIdeaName_1.png}
+        \caption{Initially, the name of an idea is an automatically shortened version of the description.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_updateIdeaName_2.png}
+        \caption{Taping on the name allows us to change it.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_updateIdeaName_3.png}
+        \caption{Leaving the text input field immediately validate the change.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Adding a comment}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addComment_1.png}
+        \caption{The text field at the bottom of an idea discussion allows to add new comments. The blue upload button let us add images and documents.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addComment_2.png}
+        \caption{Entering text enables the send button.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_addComment_3.png}
+        \caption{Once submitted, the comment is added at the end of the discussion.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Discovering and following an idea}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_follow_1.png}
+        \caption{The discovery view showing ideas we are not following.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_follow_2.png}
+        \caption{The follow button appears in the idea view of unfollowed ideas.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_follow_3.png}
+        \caption{Taping on the follow button moves the idea in our ideas overview and change the follow button a following indicator}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_follow_4.png}
+        \caption{Taping on the following indicator triggers a dialog asking if we want to unfollow the idea.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Branching an idea}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_branch_1.png}
+        \caption{We can branch a comment using the dedicated button at the rightmost of the action buttons.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_branch_1alt.png}
+        \caption{We can branch an idea by tapping the \emph{three dots} button showing a menu with various actions.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/flow_branch_2.png}
+        \caption{The form to branch an idea is based on the form to create a new idea. The difference is that here we have a description explaining what a branch is doing and we let the user define the classification directly.}
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\subsection{Going through a recap}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_recap_1.png}
+        \caption{The “See recap” link is visible in the idea view if the recap contains at least two items.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_recap_2.png}
+        \caption{The recap contains images and comments from the discussion, but also popular hashtags.}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_recap_3.png}
+        \caption{Taping on an image in the recap show it fullscreen. If it is a text comment, we are brought to the comment view.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.48\textwidth}
+        \centering
+        \includegraphics[width=.67\textwidth]{images/flow_recap_4.png}
+        \caption{Taping on the “Read the discussion” button brings us in the discussion and highlight the corresponding comment}
+    \end{minipage}
+\end{figure}
 
 \end{document}

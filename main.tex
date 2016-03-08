@@ -270,7 +270,7 @@ Moreover, as the input field to add comments is at the bottom, having the new co
 The step following wireframing is prototyping.
 In this case, the initial goal was to make it mostly visual in order to have a good idea of the look and feel, but also of the possible interactions from the users.
 The content would consist of static mock data.
-To avoid having to create a full visual design, we decided to use the component library \emph{Material Design Lite}\footnote{\url{http://getmdl.io}}, which is an implementation of \emph{Material Design}\footnote{\url{http://google.com/design/spec}}.
+To avoid having to create a full visual design, we decided to use the component library \emph{Material Design Lite}\footnote{\url{http://getmdl.io}}, which is an implementation of \emph{Material Design}\footnote{\url{http://google.com/design/spec}}, a well established design language developed by Google.
 This lightweight library, with the use of some HTML, CSS and simple Javascript, enabled us to quickly have a prototype with a solid visual design (see figure \ref{fig.firstPrototypeScreenshots}).
 
 \begin{figure}[!htb]
@@ -290,9 +290,12 @@ The visual result being good, it seemed to be the right moment to start working 
 \label{sec.architecture}
 We wanted the platform to be fully usable from any device.
 The easiest way to implement that is to have a responsive web application.
-Hence, Javascript and the \emph{MEAN stack}\footnote{\url{https://wikipedia.org/wiki/MEAN_(software_bundle)#}} seemed quite appropriate.
-These are also technologies in which Nothing Interactive has good experience with.
-This means that regarding the front-end we went for a single page application made with AngularJS.
+Hence, using Javascript seemed quite appropriate.
+A lot of frameworks and libraries exist and among all of those, for the front-end, we chose to build a single page application with AngularJS\footnote{\url{https://angularjs.org}}.
+There are several reasons to this decision.
+First, it is one of the most known Javascript framework, well documented and with a huge community.
+It allows a good interactivity of the end user which is a good fit with the nature of the application we want to build.
+Moreover, I personally already have a good experience with it, and Nothing Interactive as well.
 
 As we were satisfied with the result of using Material Design for the prototype, we wanted to keep following those guidelines.
 Material Design Lite being too light, it was not enough.
@@ -302,19 +305,25 @@ There are different ways to build an AngularJS application.
 Therefore it was important that we clearly define how we were going to structure it.
 Nothing Interactive has some internal guidelines, but with the arrival of \emph{Angular 2}, it seemed to be a good time to re-think those guidelines in order to write code that would enable an easy transition to this disruptive new version of the framework.
 Hence, we made some adaptations based an Angular Style Guide written by John Papa\footnote{\url{https://github.com/johnpapa/angular-styleguide}}, which is endorsed by the Angular team.
+The nature of those adaptations is mostly to have a component-based application architecture where we use Angular directives as components.
 
-Unfortunately, our great focus on building the front-end and having the best user experience possible did not gave us time to build a functional back-end for Flok.
-At some point we had to take the decision between either building the back-end, or doing the user testing.
-The latter seemed more important as it would validate or invalidate our assumptions regarding the interaction of the user with the platform.
-We also estimated that it would bring us valuable feedback to improve the front-end.
+Regarding the back-end, we planed to use Node.js\footnote{\url{https://nodejs.org}} with Express\footnote{\url{http://expressjs.com}} in order to have Javascript for the full stack, which is a common and good practice.
+However, we let the experience drive the product, not vice versa.
+Therefore, to make a good experience we prioritized user testing over implementing the back-end as the given time frame was not allowing us to do both.
+User testing also seemed more important as it would validate or invalidate our assumptions regarding the interaction of the user with the platform.
+We estimated that it would bring us valuable feedback to improve the front-end.
+Moreover, it is an established best practice to not having a back-end in order to ease the iterative process of updating the front-end.
 
-Not having a back-end implies some restrictions.
+Nevertheless, it also implies some restrictions.
 First, it means that once the AngularJS app is loaded in the browser, everything is happening in the browser only and there is no communication with the server, except to get static files such as images.
 Therefore, interaction between two users is not possible.
 Then, no back-end also means no database and no saved data.
 Fortunately, as the front-end is a single page application, as long as the page is not fully refreshed, all the data created by the user while using Flok is saved in memory, including uploaded files.
 Hence the user can still use and evolve in the app.
 In figure \ref{fig.dealingWithoutBackend}, a schema illustrate the data flow, where directives, controllers and service are concepts coming from AngularJS.
+
+We were not trying to build a fully working application without back-end.
+Therefore we still kept in mind an architecture that would communicate with a back-end by simulating calls to it, even though we just get the data from memory.
 
 \begin{figure}[!htb]
     \centering
@@ -342,9 +351,6 @@ In figure \ref{fig.dealingWithoutBackend}, a schema illustrate the data flow, wh
     \label{fig.dealingWithoutBackend}
 \end{figure}
 
-We were not trying to build a fully working application without back-end.
-Therefore we still kept in mind an architecture that would communicate with a back-end by simulating calls to it, even though we just get the data from memory.
-
 \subsection{Implementation and design decisions}
 We are not going to describe the implementation of every component as some of them are quite straightforward.
 We are rather going to explain the components where some reflection had to be made or decisions had to be taken.
@@ -358,6 +364,7 @@ The available actions depend of the status of the user (creator, follower) towar
 Then there is the discussion view (figure \ref{fig.idea.discussion}) where all the comments (section \ref{sec.comments}) related to the idea can be found.
 This is also where comments can be added to the discussion.
 Finally there is the recap view (figure \ref{fig.idea.recap} and section \ref{sec.recap}) which highlight the most important comments of the discussion.
+The user flow to add an idea is illustrated in appendix \ref{sec.addingIdea} and the one to discover and follow an idea in appendix \ref{sec.followingIdea}.
 
 \begin{figure}[!htb]
     \begin{subfigure}[t]{.32\textwidth}
@@ -449,6 +456,7 @@ Comments are one of the central components of Flok.
 They have one author, they are part of one idea and they are either a note (a text comment), an image, a document, a system information or a deleted comment.
 When adding a comment to a discussion, it can be the reply to another comment and thus help to establish relations among comments (see figure \ref{fig.commentView}).
 For more details on the properties of each of these type and on the relations of comments with other entities of Flok, we send you back to the entity-relationship diagram in figure \ref{fig.erDiagram}.
+The user flow to add a comment is illustrated in appendix \ref{sec.addingComment}.
 
 We would still like to mention the support of hashtags\footnote{\url{https://wikipedia.org/wiki/Hashtag}} in comments.
 When clicking on one, we are brought to the hashtag view, which list all occurrences of the hashtag in all ideas (see figure \ref{fig.hashtagView}).
@@ -489,6 +497,7 @@ If we try to look at how humans think, they initially have an idea that they bra
 It then generates new ideas based on the brainstorm and it can go on until an idea really gets developed and executed.
 We tried to represent that in Flok with the \emph{branching} feature.
 Basically, you can create an idea by branching another idea or a comment.
+The user flow to branch ideas or comments is illustrated in appendix \ref{sec.branchingIdea}.
 The main goal is to create the relation between the initial idea or comment to the newly created idea.
 Nothing is automatically taken from the source which means that the new idea form is blank and the user still has to describe her idea.
 Once the idea is created, the discussion can begin, as any new idea.
@@ -521,6 +530,7 @@ Nevertheless, we want to highlight the most important points of the discussion, 
 This is what the recap do.
 You already saw how it looks like on mobile in figure \ref{fig.idea.recap}.
 This same layout on a desktop would be quite inefficient, therefore we adapted the view to give a better experience when showing the recap on a large screen, as you can see in figure \ref{fig.recap.desktop}.
+The user flow through the recap view is illustrated in appendix \ref{sec.recapFlow}.
 
 \begin{figure}[!htb]
     \centering
@@ -1014,7 +1024,8 @@ We conducted three user testing sessions which allowed us to gather valuable fee
 % Summary of results
 At this point of the project, we have a working front-end.
 Time limitation made us foster user testing at the expense of the back-end implementation.
-The drawback is that the current lack of back-end do not allow us to truly experience the collaboration side of the app.
+The drawback is that the current lack of back-end does not allow us to test the real-time approach mentioned in the initial hypothesis.
+It is therefore difficult to rigorously establish how the shared know-how or the overall collaborative spirit of teams has been improved.
 The advantage is that user testing really allowed us to have a more human experience by using the feedback we got to make the interface simpler and more intuitive.
 The test sessions did not only reveal what needed improvement, but also what was already well done.
 For most of the components, the test users interacted with the interface as expected and understood what was going on.
@@ -1024,12 +1035,10 @@ We mainly retain that they liked the interface and how its simplicity helps to u
 The second phase of the tests gave the test users a glimpse at what collaboration would look like within Flok.
 Their feeling was that the app could be useful for companies or organizations.
 
-
 % Relevance of results
-It is difficult to make strong conclusions based only on three test sessions.
-However, the feedback we have got and the improvements they allowed us to make are really promising and tell us that we are going in the right direction.
-
-% Hypothesis proven?
+It is difficult to make strong conclusions based only on the three test sessions.
+However, these tests enabled us to uncover most of the usability issues.
+The feedback we have got and the improvements they allowed us to make are really promising and tell us that we are going in the right direction.
 
 % What could have been done better
 That is quite unfortunate that we had to make this hard choice between back-end and user testing.
@@ -1042,8 +1051,8 @@ Moreover, it would have been a good thing to do more user testing in order to ha
 
 % What is still to be done
 It is clear that one of the important next step is to implement the back-end.
-This will enable us to have a persistent database and a way to access it, either with a REST API or using GraphQL\footnote{\url{https://facebook.github.io/graphql/}}.
-As the app is collaboration-oriented, it would be important to insure real-time synchronization.
+This will enable us to have a persistent database and to truly make the app collaboration-oriented.
+For this, it would be important to insure real-time synchronization.
 That would not only be between different users, but also if a single user change device and want to seamlessly continue where she left.
 
 \cleardoublepage
@@ -1111,6 +1120,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
 
 \clearpage
 \subsection{Updating the name of an idea}
+\label{sec.updatingIdeaName}
 
 \begin{figure}[!htb]
     \begin{minipage}[t]{.32\textwidth}
@@ -1134,6 +1144,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
 
 \clearpage
 \subsection{Adding a comment}
+\label{sec.addingComment}
 
 \begin{figure}[!htb]
     \begin{minipage}[t]{.32\textwidth}
@@ -1157,6 +1168,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
 
 \clearpage
 \subsection{Discovering and following an idea}
+\label{sec.followingIdea}
 
 \begin{figure}[!htb]
     \begin{minipage}[t]{.48\textwidth}
@@ -1188,6 +1200,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
 
 \clearpage
 \subsection{Branching an idea}
+\label{sec.branchingIdea}
 
 \begin{figure}[!htb]
     \begin{minipage}[t]{.32\textwidth}
@@ -1211,6 +1224,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
 
 \clearpage
 \subsection{Going through a recap}
+\label{sec.recapFlow}
 
 \begin{figure}[!htb]
     \begin{minipage}[t]{.48\textwidth}

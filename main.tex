@@ -200,11 +200,11 @@ This makes him think about another idea so instead of replying at this point of 
 
 Initially new ideas are classified under the \emph{Incubating} label.
 This is not the case anymore for Andrew's idea which has evolved and became more mature and precise.
-Hence he decides to update the classification to \emph{Need to decide} where the discussion should be more about what are going to be the next step to implement the idea.
+Hence he decides to update the state to \emph{Need to decide} where the discussion should be more about what are going to be the next step to implement the idea.
 Moreover, the original name and description of the idea do not suit its content anymore.
 Therefore Andrew updates them accordingly.
 
-After a while, the idea reached the \emph{Open for execution} classification where it got successfully implemented.
+After a while, the idea reached the \emph{Open for execution} state where it got successfully implemented.
 At this point the idea can be archived, which is what Andrew does.
 
 % TODO link the story map to the hypothesis.
@@ -352,7 +352,7 @@ We are rather going to explain the components where some reflection had to be ma
 \subsubsection{Ideas}
 Ideas are the main components of Flok.
 They are created by users and they have three different views.
-The main view (figure \ref{fig.idea.main}) gives the general information about the idea: author, creation date, description, number of comments, classification (section \ref{sec.ideasClassification}), followers and relations with other ideas.
+The main view (figure \ref{fig.idea.main}) gives the general information about the idea: author, creation date, description, number of comments, state (section \ref{sec.ideasState}), followers and relations with other ideas.
 From here you can also trigger actions on the idea such as following, bookmarking, archiving and branching (section \ref{sec.branching}).
 The available actions depend of the status of the user (creator, follower) toward the idea.
 Then there is the discussion view (figure \ref{fig.idea.discussion}) where all the comments (section \ref{sec.comments}) related to the idea can be found.
@@ -382,12 +382,12 @@ Finally there is the recap view (figure \ref{fig.idea.recap} and section \ref{se
 \end{figure}
 
 \FloatBarrier
-\subsubsection{Ideas classification}
-\label{sec.ideasClassification}
+\subsubsection{Ideas state}
+\label{sec.ideasState}
 Here there is actually not much to say regarding the implementation itself.
-We introduced these classification in order to easily visualize the state of an idea.
-Initially, to update the classification, it has either to be promoted or demoted, respectively to the next or previous classification.
-To do so, one of the idea follower had to start a poll asking all the followers to vote for or against and change of classification (see figure \ref{fig.promotionPoll}).
+We introduced these states in order to easily visualize the development situation of an idea.
+Initially, to update the state, it has either to be promoted or demoted, respectively to the next or previous state.
+To do so, one of the idea follower had to start a poll asking all the followers to vote for or against and change of state (see figure \ref{fig.promotionPoll}).
 The goal here was to reflect a common decision.
 
 \begin{figure}[!htb]
@@ -414,32 +414,32 @@ What happens if there is a draw?
 We thought about how to reply to these questions and we could have implemented solutions, but in the end this might be a hassle for the user to make that change of state.
 Instead, we went for a drastic simplification.
 No more poll, no more promotion or demotion.
-We simply let any follower update the classification from a dropdown menu (see figure \ref{fig.classificationSelect}).
+We simply let any follower update the state from a dropdown menu (see figure \ref{fig.stateSelect}).
 The change is instantly applied.
-Now there might be disagreement within the followers regarding the classification an idea should have, but they are all in the same team and they can discuss that.
-Moreover as it is so simple to change the classification, they can easily reversed their decisions.
-Having simplified this action also enabled us to implement an interactive way for the user to update the classification from desktop, by dragging-and-dropping ideas in \emph{Kanban}\footnote{\url{https://en.wikipedia.org/wiki/Kanban}} columns (see figure \ref{fig.classificationDragAndDrop}).
+Now there might be disagreement within the followers regarding the state an idea should have, but they are all in the same team and they can discuss that.
+Moreover as it is so simple to change the state, they can easily reversed their decisions.
+Having simplified this action also enabled us to implement an interactive way for the user to update the state from desktop, by dragging-and-dropping ideas in \emph{Kanban}\footnote{\url{https://en.wikipedia.org/wiki/Kanban}} columns (see figure \ref{fig.stateDragAndDrop}).
 You will also notice that these columns are color-coded in order to make it even more clearer for the users to understand what can be executed.
 
 \begin{figure}[!htb]
     \begin{subfigure}{.48\textwidth}
         \centering
-        \includegraphics[width=.67\textwidth]{images/classificationSelect_selected.png}
+        \includegraphics[width=.67\textwidth]{images/stateSelect_selected.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.48\textwidth}
         \centering
-        \includegraphics[width=.67\textwidth]{images/classificationSelect_selecting.png}
+        \includegraphics[width=.67\textwidth]{images/stateSelect_selecting.png}
     \end{subfigure}
-    \caption{Screenshots of Flok front-end featuring the simple classification update of an idea}
-    \label{fig.classificationSelect}
+    \caption{Screenshots of Flok front-end featuring the simple state update of an idea}
+    \label{fig.stateSelect}
 \end{figure}
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{images/classificationDragAndDrop.png}
-    \caption{Screenshots of Flok front-end featuring the drag-and-drop of an idea from a classification to another}
-    \label{fig.classificationDragAndDrop}
+    \includegraphics[width=\textwidth]{images/stateDragAndDrop.png}
+    \caption{Screenshots of Flok front-end featuring the drag-and-drop of an idea from a state to another}
+    \label{fig.stateDragAndDrop}
 \end{figure}
 
 \FloatBarrier
@@ -602,7 +602,7 @@ The actions that are logged in the activity are the following:
         \item creating an idea
         \item branching an idea
         \item following an idea
-        \item moving an idea from a classification to another
+        \item moving an idea from a state to another
         \item renaming an idea
         \item adding a comment (note, image or file)
         \item liking a comment
@@ -676,7 +676,7 @@ The layout issue might be the reason, hence we waited for the next test to see i
 \subsubsection*{Good points}
 \begin{itemize}
     \item She immediately noticed the plus (+) button to add an idea, which tells us it has a good visibility.
-    \item She understood well the idea classification process.
+    \item She understood well the idea state concept.
     \item She liked having a global view of the ideas and how “everything is linked together”.
     \item She liked to be able to see other person profile and their activity in the platform.
     \item She mentioned that the app could be useful for companies.
@@ -729,6 +729,7 @@ See figure \ref{fig.tests.forkBranchForm} to notice the difference.
     \label{fig.tests.forkBranchForm}
 \end{figure}
 
+\FloatBarrier
 \subsubsection*{Profile completion}
 As the test user tried to add a comment in the discussion, she noticed that she could not when she saw the message saying that she has to complete her profile first.
 She clicked on the given link to perform the profile completion, but once on the profile tab of the person view, she rather went through all the other tabs rather than changing her first and last name.
@@ -857,7 +858,7 @@ To prevent this reaction, we added a comment counter in the idea main view (see 
     \end{subfigure}
     \begin{subfigure}[t]{.495\textwidth}
         \includegraphics[width=\textwidth]{images/user_tests/ideaView_after.png}
-        \caption{After user testing. A comment counter gives the number of comments posted in the discussion. There is also a lightly colored frame around the idea card indicating its classification.}
+        \caption{After user testing. A comment counter gives the number of comments posted in the discussion. There is also a lightly colored frame around the idea card indicating its state.}
         \label{fig.tests.ideaView.after}
     \end{subfigure}
     \caption{Screenshots of Flok front-end featuring the idea view.}
@@ -897,13 +898,13 @@ See figure \ref{fig.tests.activity} to notice the difference.
 \subsubsection*{Ideas in profile}
 Finally the test user went to his profile and in his ideas view, he expected to see not only the ideas he created, but also the one he is following.
 But this would not be so different than the ideas overview.
-Therefore, what we rather did is to simplify this view by removing the classification indication and not showing the author avatar as it is always the user itself in this view.
+Therefore, what we rather did is to simplify this view by removing the state indication and not showing the author avatar as it is always the user itself in this view.
 See figure \ref{fig.tests.personIdeas} to notice the difference.
 
 \begin{figure}[!htb]
     \begin{subfigure}[t]{.495\textwidth}
         \includegraphics[width=\textwidth]{images/user_tests/personIdeas_before.png}
-        \caption{Before user testing. The view was still showing the classification of an idea.}
+        \caption{Before user testing. The view was still showing the state of an idea.}
         \label{fig.tests.personIdeas.before}
     \end{subfigure}
     \hfill
@@ -1204,7 +1205,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
     \begin{minipage}[t]{.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/flow_branch_2.png}
-        \caption{The form to branch an idea is based on the form to create a new idea. The difference is that here we have a description explaining what a branch is doing and we let the user define the classification directly.}
+        \caption{The form to branch an idea is based on the form to create a new idea. The difference is that here we have a description explaining what a branch is doing and we let the user define the state directly.}
     \end{minipage}
 \end{figure}
 

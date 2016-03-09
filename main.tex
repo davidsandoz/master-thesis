@@ -70,7 +70,7 @@ Les Allées 29\\
     However, it can get quite messy and our goal is to design and develop a platform – Flok – that significantly improves collaboration around ideas, while providing an experience as human as possible.
     To do so, we took a user-centered approach by using processes such as the creation of personas, user story mapping, wireframing and prototyping.
     Based on those processes and a well defined information architecture, we built a front-end application.
-    The back-end also has an important role in order to have a final fully working product.
+    The back-end also has an important role in order to have a fully working final product.
     However, we let the experience drive the product, not vice versa.
     Therefore, to make a good experience, we prioritized user testing over implementing the back-end as the given time frame was not allowing us to do both.
     We were able to improve the front-end and verify some of our assumptions by doing three test sessions.
@@ -119,14 +119,12 @@ It can be proven that a truly real-time approach to create, read and update info
 \subsection{User-centered design}
 The approach taken to create the platform is based on the \emph{user-centered design} concept.
 The goal is to focus first on the user need and to start by designing the user interaction with the product to then define what the content is going to be and which technologies are going to be used.
-The reason why we took this approach is because we really want the product to be intuitive for the end-users, that it matches their expectations regarding what they need, what they can do with the platform, rather than making them adapt their behavior.
+The reason why we took this approach is because we really want the product to be intuitive for the end-users.
+We want that it matches their expectations regarding what they need, what they can do with the platform, rather than making them adapt their behavior.
 
 To this end, different processes were used, such as \emph{user story mapping} to define the user needs, \emph{wireframing} and \emph{prototyping} to quickly test if the design of a functionality matches those user needs, and \emph{user testing} to have feedback from real users in order to adapt the platform to their needs.
 Moreover, we are not going through these different processes sequentially, but rather iteratively.
 Each of these steps enable us to discover new issues, new opportunities and we have then to reflect those in every other step.
-
-% TODO What about integrating the "Product Design Process" of Nothing Interactive?
-% Answer: Not necessarily. It is quite complex to explain, what is already in this section might be enough
 
 \section{Personas}
 In order to embrace the user-centered design concept, we have to put ourselves in the shoes of the users we expect to use the platform. To do this, \emph{personas} were created.
@@ -136,7 +134,7 @@ All three work in the same startup. \emph{Andrew McAllister} is the CEO, \emph{M
 These personas were not defined in much more details, as part of the research was to determine more clearly for which purpose Flok is going to be used. %TODO should we delete this sentence?
 
 \section{User story mapping}
-\emph{User story mapping} (USM) is a technique which help teams developing software to stay focused on users and their needs \cite{patton2014user}.
+\emph{User story mapping} (USM) is a technique which help teams developing software while staying focused on users and their needs \cite{patton2014user}.
 It is based on user stories and story maps. \emph{User stories} are descriptions of how users are interacting with the whole product and not only with one of its feature.
 \emph{Story maps} are a two-dimensional visual representation of stories with \emph{cards} as atomic parts.
 In general, the top row of cards represents the backbone of the story (from left to right), and the cards below give more details.
@@ -152,7 +150,7 @@ The green sticky notes represent actions by users and the blue ones indicate whi
 In the latest versions of the user story map, we can notice that the orange sticky notes entitle \emph{slices} of the story.
 As said, the first row is the backbone.
 Below we have three slices R1, R2 and R3, \emph{R} meaning \emph{release}.
-It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the user in the earliest versions of Flok.
+It helps to define clearly which part of the story are the most important and therefore need to be possible to do for the users in the earliest versions of Flok.
 For the Master project, we implemented the front-end up to R2 and left in R3 parts of the stories we did not deem necessary to have in an early version of Flok.
 
 Building this user story map was a bit more tricky than it can be for most others.
@@ -192,22 +190,20 @@ However, Andrew disagrees with the input from Melanie and he says it by replying
 Among the comments and other inputs of Andrew's team mates taking part to his idea, he gets interested by the views of one specific person.
 He looks at this person profile and more precisely in which other ideas she is active and that might interest him.
 
-Back to Andrew's idea, after a while, Sergei joins the idea that he found through the \emph{discovery} section of the app.
-He found the idea interesting and noticed that among the followers there were team mates he usually like their thinking.
+Back to Andrew's idea, after a while, Sergei joins the idea that he found through the \emph{discovery} view of the app.
+He found the idea interesting and noticed that among the followers there were team mates he usually like their way of thinking.
 He catches up the discussion through the recap and among the highlighted items one image appealed him.
 He brings up the image in its context, in the discussion, to see in more details what it is about.
 This makes him think about another idea so instead of replying at this point of the discussion, he rather decides to branch from the image to create a new idea in Flok.
 
 Initially new ideas are classified under the \emph{Incubating} label.
 This is not the case anymore for Andrew's idea which has evolved and became more mature and precise.
-Hence he decides to update the state to \emph{Need to decide} where the discussion should be more about what are going to be the next step to implement the idea.
+Hence he decides to update the state to \emph{Need to decide} where the discussion should be more about what are going to be the next step to implement the idea and choose among several given alternatives.
 Moreover, the original name and description of the idea do not suit its content anymore.
 Therefore Andrew updates them accordingly.
 
 After a while, the idea reached the \emph{Open for execution} state where it got successfully implemented.
 At this point the idea can be archived, which is what Andrew does.
-
-% TODO link the story map to the hypothesis.
 
 \section{Information architecture}
 To accompany and solidify the project it is important to have a good information architecture.
@@ -234,12 +230,11 @@ Once we had a first version of the user story map, the next step was to build wi
 Wireframes allow to quickly have a very rough view of the components layout and how they fit in the available space.
 They enable us to see changes that need to be brought even before we start designing or implementing, and hence save us some precious time.
 
-For instance, initially ideas were called \emph{topics} and when we designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – The most discussed ones being more prominent (see the leftmost wireframe of figure \ref{fig.originalRecapWireframes}).
+For instance, initially ideas were called \emph{topics} and when we designed the first wireframes of recap page for a topic, it was a kind of tag cloud with all the ideas discussed in a topic – the most discussed ones being more prominent (see the leftmost wireframe of figure \ref{fig.originalRecapWireframes}) – and each idea of a topic would have its on sub-recap page.
 This made us realize that here was a lack of shared understanding regarding the scope of the discussions we expect to be held in one topic.
-The first wireframes showed a design where topics would contain several ideas, and each idea of a topic would have its recap page.
 We finally agreed that one topic should be one idea, and to even simplify that, we changed the name \emph{topic} for \emph{idea}.
 It is also more human – Instead of creating a topic on Flok when you have an idea, you just add an idea on Flok when you have one.
-This shows that we were able avoid having to change a single line of code to apply this change as it was detected before we start the first prototype.
+This shows how we were able to avoid editing a single line of code to apply this change, as it was detected before we start the first prototype.
 
 \begin{figure}[!htb]
     \centering
@@ -263,8 +258,6 @@ This is also while designing the wireframes that we asked ourselves the question
 Some researches \cite{mabande2010designing} concluded that having the oldest ones at the top and the more recent ones at the bottom was leading to more engagement from the participant of a discussion.
 Following this order is also more human as it follows the natural reading order.
 Moreover, as the input field to add comments is at the bottom, having the new comments appearing right above it is also expected by the user.
-
-% TODO link the wireframes to the hypothesis
 
 \section{Prototyping}
 The step following wireframing is prototyping.
@@ -307,7 +300,7 @@ Nothing Interactive has some internal guidelines, but with the arrival of \emph{
 Hence, we made some adaptations based an Angular Style Guide written by John Papa\footnote{\url{https://github.com/johnpapa/angular-styleguide}}, which is endorsed by the Angular team.
 The nature of those adaptations is mostly to have a component-based application architecture where we use Angular directives as components.
 
-Regarding the back-end, we planed to use Node.js\footnote{\url{https://nodejs.org}} with Express\footnote{\url{http://expressjs.com}} in order to have Javascript for the full stack, which is a common and good practice.
+Regarding the back-end, we planed to use Node.js\footnote{\url{https://nodejs.org}} with Express\footnote{\url{http://expressjs.com}} in order to have Javascript for the full stack of the app, which is a common and good practice.
 However, we let the experience drive the product, not vice versa.
 Therefore, to make a good experience we prioritized user testing over implementing the back-end as the given time frame was not allowing us to do both.
 User testing also seemed more important as it would validate or invalidate our assumptions regarding the interaction of the user with the platform.
@@ -464,10 +457,10 @@ When clicking on one, we are brought to the hashtag view, which list all occurre
 Below each comment, a list of actions is offered to the users.
 They can like the comment, bookmark it, reply to it, or branch it.
 Liking a comment is a visual indication showing support, agreement or sympathy.
-Bookmarking a comment adds it in the bookmark list of the users who can access it from their profile.
+Bookmarking a comment adds it in the bookmark list of the users, who can access it from their profile.
 It is a way to save comments they want to easily access later.
 Comment branching is covered in section \ref{sec.branching}.
-And if we are the author of a comment, we have an additional \emph{three dots} button toggling a menu to either edit or delete a comment.
+If we are the author of a comment, we have an additional \emph{three dots} button toggling a menu to either edit or delete a comment.
 
 When we introduced the possibility to delete a comment, it was really completely deleted.
 However, it also broke relations between comments and ideas, which are made through replies and branches.
@@ -579,7 +572,7 @@ Indeed, replying to a comment means that this comment generated engagement and n
 If users bookmark a comment, it means they want to have it saved for themselves.
 It affects their bookmark list and they will therefore be careful regarding what they bookmark.
 This shows a strong interest for the comment, thus bookmarking being the second most important property with a factor 3.
-The likes however, are only affecting the comment which receives them and not the users who give them.
+The likes however, are only affecting the comment which gets them and not the users who give them.
 Hence the reason we give them less importance than bookmarks.
 They still have a factor 2 as they are used to show support or agreement.
 Branching a comment means creating a new idea.
@@ -604,7 +597,7 @@ Hence, a hashtag appears in the recap if it has at least two mentions in the dis
 Of course, for this simple algorithm, the given factors are based on assumptions and only testing in a real-life situation would show us if the result is matching users expectations.
 
 \subsubsection{Activity}
-The activity section of Flok shows to the user the recent events occurring in ideas she follows (see figure \ref{fig.activity}).
+The activity section of Flok shows to the user the recent events occurring in ideas that she follows or created (see figure \ref{fig.activity}).
 This allow her to have a quick overview of everything that happened in the ideas she is interested in.
 The actions that are logged in the activity are the following:
 \begin{multicols}{2}
@@ -641,8 +634,7 @@ But as interaction between users is not possible yet without a back-end, it was 
 \section{User testing}
 In order to check the assumptions made during the user-centered design process, we made three user testing sessions.
 We used the service TestingTime\footnote{\url{http://testingtime.com}} to find test users.
-The tests were made through Skype.
-The test users shared their screen with us.
+The tests were made through Skype with the test users sharing their screen with us.
 We spread the tests over one week, on Monday, Wednesday and Friday.
 The time between two tests allowed us to make some adjustments to the front-end before the next test and directly see if it already improved the user experience.
 
@@ -650,7 +642,7 @@ When explaining the test and giving instructions, we did not give information ab
 We wanted to see if people can understand the usage by themselves.
 We asked the test users to describe us what they do and what they expect to happen when interacting with the app.
 We also asked them to tell if they understand or not what is happening and if there is anything they like or dislike when using Flok.
-Moreover, as the test session have been done with desktop computers, the app was tested with a desktop viewport.
+Moreover, as the test sessions have been done with desktop computers, the app was tested with a desktop viewport.
 
 The test sessions were divided in two parts.
 The first part was about testing the app without any initial content.
@@ -660,7 +652,8 @@ That is were the second part of the test session come in.
 There, the test users start using the app with some initial mock content.
 They can see discussions between several people about one idea, which could help them understand other aspects of the app.
 
-In the following subsections for each test session, we give the good points, which are the positive aspects we noticed during the test session or that were explicitly given by the test user.
+In the following subsections for each test session, we first give the good points.
+They are the positive aspects we noticed during the test session or that were explicitly given by the test user.
 Then we explain how various features were improved after having seen the test user misunderstanding or struggling with them.
 
 Unexpectedly, it appeared that the first test user did not have an up to date browser installed on her computer.
@@ -686,9 +679,9 @@ The layout issue might be the reason, hence we waited for the next test to see i
 \subsubsection*{Good points}
 \begin{itemize}
     \item She immediately noticed the plus (+) button to add an idea, which tells us it has a good visibility.
-    \item She understood well the idea state concept.
+    \item She understood well the concept around the state of an idea.
     \item She liked having a global view of the ideas and how “everything is linked together”.
-    \item She liked to be able to see other person profile and their activity in the platform.
+    \item She liked to be able to see other people profile and their activity in the platform.
     \item She mentioned that the app could be useful for companies.
 \end{itemize}
 
@@ -807,15 +800,6 @@ This can also be due to the fact that his experience in computer usage was signi
     \item As a person working in the music events domain, he would imagine Flok working very well for the organization of bands or festivals.
 \end{itemize}
 
-%After that, he went to complete his profile as suggested in the non-intrusive comment at the top of the ideas overview, appearing after having created a first idea.
-%This comforted us in the usefulness of this feature.
-
-%He started the test by exploring the app.
-%He went quickly through all the views he could, first without creating or editing any content.
-
-%Then he created a first idea without adding files, but just giving a title.
-%It was interesting to see that there was no problem for him whereas the first test user had difficulties to realize she has to enter a title (as she only gave an image).
-
 \subsubsection*{Ideas overview}
 This test user did not immediately realize that he could drag-and-drop ideas, even with the comment “\emph{Create an idea or drag an idea here to change its status}” visible in the empty columns.
 The beginning of the sentence seemed to be confusing as he tried to click on it to create an idea.
@@ -839,6 +823,15 @@ See figure \ref{fig.tests.ideasOverview} to notice the difference.
     \label{fig.tests.ideasOverview}
 \end{figure}
 
+\subsubsection*{Forking/Branching}
+When the test user clicked on the fork (previous name of the branch feature) button of a comment, and created a new idea, he was a bit confused as he expected the forked idea to be just inside the comment and not as a whole new idea.
+He understood by himself afterward, but this comforted us that the changes we brought after the first user test, by renaming the feature and giving more explanations in the form to branch an idea, are indeed needed to make it clear even sooner (see figure \ref{fig.tests.forkBranchForm.after}).
+
+\subsubsection*{Recap view}
+Then the test user visited the recap page of an idea and was not really sure of how useful it would be for him.
+He said he prefers having the comment in chronological order.
+We did not make any change here as we wanted to see how the last test user would react.
+
 \subsubsection*{Bookmark action}
 The test user guessed that the bookmark button meant bookmarking, but he was not sure at all and clicking on it did not help him understand as it just colored it and incremented the counter.
 He said that if it is indeed a bookmark, he would still not know where to look for it.
@@ -851,10 +844,6 @@ It also contains a button that the user can click to go see his bookmarks.
     \caption{Screenshots of Flok front-end featuring the bookmark notification.}
     \label{fig.tests.bookmarkNotification}
 \end{figure}
-
-\subsubsection*{Forking/Branching}
-When the test user clicked on the fork (previous name of the branch feature) button of a comment, and created a new idea, he was a bit confused as he expected the forked idea to be just inside the comment and not as a whole new idea.
-He understood by himself afterward, but this comforted us that the changes we brought after the first user test, by renaming the feature and giving more explanations in the form to branch an idea, are indeed needed to make it clear even sooner (see figure \ref{fig.tests.forkBranchForm.after}).
 
 \subsubsection*{Idea view}
 When the test user clicked on the button to add a comment in the idea view, he was surprised to see all the comments there was, as nothing on the main view of the idea was telling him how big already was the discussion.
@@ -874,14 +863,6 @@ To prevent this reaction, we added a comment counter in the idea main view (see 
     \caption{Screenshots of Flok front-end featuring the idea view.}
     \label{fig.tests.ideaView}
 \end{figure}
-
-\subsubsection*{Recap view}
-Then the test user visited the recap page of an idea and was not really sure of how useful it would be for him.
-He said he prefers having the comment in chronological order.
-We did not make any change here as we wanted to see how the last test user would react.
-
-%After he went to the discovery view, where he saw that ideas can be followed.
-%He also understood that doing so made the idea move from the discovery view to the ideas view.
 
 \subsubsection*{Activity}
 In the activity view, the test user expected to see his own activity, which was only visible from his profile.
@@ -932,7 +913,6 @@ See figure \ref{fig.tests.personIdeas} to notice the difference.
 The third test user was a 26 years old woman.
 
 For this test we did deploy the changes we brought after the last two tests.
-Therefore, all the changes brought after the two first tests were applied.
 
 \subsubsection*{Good points}
 \begin{itemize}
@@ -943,27 +923,6 @@ Therefore, all the changes brought after the two first tests were applied.
     \item She liked the simplicity of the interface and added that it helps to understand the concepts that are a bit complicated.
     \item She said that at the beginning she needed some minutes to get into it, but that it gets pretty clear after having used the app.
 \end{itemize}
-
-\subsubsection*{Profile completion}
-After having added an idea, the test user saw the banner telling her that she can complete her profile, but she did not do it.
-We realized that the banner suggest to complete the profile to let others know who the user is, but it does not say that it would enable the user to add comments.
-Therefore we changed the text from “To let others know who came up with this idea, complete your profile.” to “To let others know who came up with this idea, \emph{and for you to be able to add comments,} complete your profile.”.
-
-\subsubsection*{Ideas overview}
-The test user noticed that ideas can be dragged-and-dropped thanks to the visual changes we brought since the previous test (see figure \ref{fig.tests.ideasOverview}).
-However, she did not get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
-As she is the only test user that had this new interface, we did not make the change to have the whole box draggable again.
-It would be better to do further user tests to check if the behavior is the same with other people using the new interface.
-
-%TODO: Delete as it is obvious?
-%\subsubsection*{Comment counter}
-%In the idea view, she saw the comment counter (see figure \ref{fig.tests.ideaView.after}) and wanted to see the discussion by clicking on the counter, which was not working.
-%We added the comment counter after the previous user test and it did not seem to have any issue visually, but we did not really test the usability in this short period of time.
-%Seeing her not being able to access the discussion while clicking on the counter, made it obvious that this should be possible, so we did it.
-
-%Then she went to the discussion of an idea and tested the different actions that can be done with one comment.
-%She understood them all quite well, including the branching action, where more explanations are given after that the two previous test users got a bit confused with the feature.
-%Going in the tree navigation view made her create more branches in order to see how the view evolved and in the end she said that it reacted as she expected.
 
 \subsubsection*{Search}
 In the search results view, the test user immediately understood the “\emph{Show bookmarks}” switch toggle.
@@ -987,6 +946,17 @@ To fix that, we changed the design by making a filter toggle less visible when d
     \label{fig.tests.search}
 \end{figure}
 
+\subsubsection*{Profile completion}
+After having added an idea, the test user saw the banner telling her that she can complete her profile, but she did not do it.
+We realized that the banner suggest to complete the profile to let others know who the user is, but it does not say that it would enable the user to add comments.
+Therefore we changed the text from “To let others know who came up with this idea, complete your profile.” to “To let others know who came up with this idea, \emph{and for you to be able to add comments,} complete your profile.”.
+
+\subsubsection*{Ideas overview}
+The test user noticed that ideas can be dragged-and-dropped thanks to the visual changes we brought since the previous test (see figure \ref{fig.tests.ideasOverview}).
+However, she did not get that the drag handle icon was the part that needed to be dragged and tried in vain to move the idea by dragging it from the middle of it.
+As she is the only test user that had this new interface, we did not make the change to have the whole box draggable again.
+It would be better to do further user tests to check if the behavior is the same with other people using the new interface.
+
 \subsubsection*{Achievements}
 The test user was not sure of the difference between the number of ideas followed and the number of ideas she took part in (see figure \ref{fig.tests.achievements.before}).
 The latter counts the ideas where she posted at least one comment.
@@ -1001,7 +971,7 @@ The simple fact that we feel the need to explain it here means that it requires 
     \hfill
     \begin{subfigure}[t]{.495\textwidth}
         \includegraphics[width=\textwidth]{images/user_tests/achievements_after.png}
-        \caption{After user testing. The confusing achievement now says that it is the ideas where we added comments and has been moved closer to the following ideas to make the user notice they are not the same.}
+        \caption{After user testing. The confusing achievement now says that it is the ideas where we added comments, and has been moved closer to the following ideas to make the user notice they are not the same.}
         \label{fig.tests.achievements.after}
     \end{subfigure}
     \caption{Screenshots of Flok front-end featuring the achievements overview.}
@@ -1078,7 +1048,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
     \begin{minipage}[t]{.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/flow_addIdea_1.png}
-        \caption{When loading Flok for the first time, the ideas overview is empty as we haven't created any idea and aren't following any neither. To add an idea, we must tap on the plus (+) blue button.}
+        \caption{When loading Flok for the first time, the ideas overview is empty as we haven't created any idea and aren't following any neither. To add an idea, we must tap on the blue plus (+) button.}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{.32\textwidth}
@@ -1090,7 +1060,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
     \begin{minipage}[t]{.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/flow_addIdea_3.png}
-        \caption{Once the idea added, we are brought to the ideas overview where the newly added idea can be seen. As a new user, we are suggested to complete our profile (see section \ref{sec.completingProfile}), notably to be able to comment about any ideas.}
+        \caption{Once the idea added, we are brought to the ideas overview where the newly added idea can be seen. As a new user, we are suggested to complete our profile (see section \ref{sec.completingProfile}), notably to be able to comment in any idea.}
     \end{minipage}
 \end{figure}
 
@@ -1174,7 +1144,7 @@ It is also possible to try out the latest version of Flok's front-end at the fol
     \begin{minipage}[t]{.48\textwidth}
         \centering
         \includegraphics[width=.67\textwidth]{images/flow_follow_1.png}
-        \caption{The discovery view showing ideas we are not following.}
+        \caption{The discovery view showing ideas we are not following. Taping on one of them brings us to its idea view.}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{.48\textwidth}

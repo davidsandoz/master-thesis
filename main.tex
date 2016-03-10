@@ -19,6 +19,7 @@
 \usepackage{rotating} %to have some figures sideways.
 \usepackage{placeins} % To force floats to be placed before the beginning of next section
 \usepackage{parskip} % To add space between paragraphs
+\usepackage{wrapfig}
 
 \usepackage{tikz}
 \usepackage{pgf-umlsd}
@@ -41,8 +42,25 @@
 \begin{document}
 \pagenumbering{roman}
 
+%Cover page
+\pagecolor{rocketorange}
+\color{white}
+\newcommand{\epflLogo}{logos/logo_EPFL_White.pdf}
+\newcommand{\niLogo}{logos/NothingInteractive_RGB_White_Vertical.pdf}
+\input{./title.tex}
+\thispagestyle{empty}
+\cleardoublepage
+
+%Title page
+\pagecolor{white}
+\color{black}
+\renewcommand{\epflLogo}{logos/logo_EPFL.pdf}
+\renewcommand{\niLogo}{logos/NothingInteractive_RGB_Color_Vertical.pdf}
+\setcounter{page}{1}
+\pagenumbering{roman}
 \input{./title.tex}
 \cleardoublepage
+
 
 \vspace*{5cm}
 \begin{acknowledgments}
@@ -67,7 +85,7 @@ Les Allées 29\\
 \vspace*{5cm}
 \begin{abstract}
     Humans have ideas and they are generally improved when those are shared and discussed among several people.
-    However, it can get quite messy and our goal is to design and develop a platform – Flok – that significantly improves collaboration around ideas, while providing an experience as human as possible.
+    However, it can quickly get quite messy so our goal is to design and develop a platform – Flok – that significantly improves collaboration around ideas, while providing an experience as human as possible.
     To do so, we took a user-centered approach by using processes such as the creation of personas, user story mapping, wireframing and prototyping.
     Based on those processes and a well defined information architecture, we built a front-end application.
     The back-end also has an important role in order to have a fully working final product.
@@ -97,7 +115,7 @@ That is something good to do because it can bring a lot of valuable input that w
 This makes the idea evolve; it might go in one direction or another, change shape, or even generate new different ideas.
 This can also be seen as what is called \emph{brainstorming}. This process is in general quite messy.
 A lot of information is generated and not structured, which makes it difficult to highlight the most important items.
-For brainstorming, teams sometimes use a ticketing system that they already use for other projects related tasks.
+For brainstorming, teams sometimes use a ticketing system (issue tracker) that they already use for other projects related tasks.
 Tickets are great for development, but not good for creative brainstorming.
 
 Therefore, what we want to achieve is to design and develop a platform that significantly improves collaboration around ideas within a team or a small to medium-sized company by getting considerably close to the cognitive working reality of a team.
@@ -127,15 +145,52 @@ Moreover, we are not going through these different processes sequentially, but r
 Each of these steps enable us to discover new issues, new opportunities and we have then to reflect those in every other step.
 
 \section{Personas}
+
+\begin{wrapfigure}[6]{r}[0pt]{1.8cm}
+    \vspace{-13pt}
+    \begin{subfigure}[t]{1.8cm}
+        \centering
+        \begin{tikzpicture}
+            \begin{scope}
+                \clip [rounded corners=.8cm] (0,0) rectangle coordinate (centerpoint) (1.6,1.6cm);
+                \node [inner sep=0pt] at (centerpoint) {\includegraphics[width=1.6cm]{images/userA.jpg}};
+            \end{scope}
+        \end{tikzpicture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{1.8cm}
+        \centering
+        \begin{tikzpicture}
+            \begin{scope}
+                \clip [rounded corners=.8cm] (0,0) rectangle coordinate (centerpoint) (1.6,1.6cm);
+                \node [inner sep=0pt] at (centerpoint) {\includegraphics[width=1.6cm]{images/userC.jpg}};
+            \end{scope}
+        \end{tikzpicture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{1.8cm}
+        \centering
+        \begin{tikzpicture}
+            \begin{scope}
+                \clip [rounded corners=.8cm] (0,0) rectangle coordinate (centerpoint) (1.6,1.6cm);
+                \node [inner sep=0pt] at (centerpoint) {\includegraphics[width=1.6cm]{images/userB.jpg}};
+            \end{scope}
+        \end{tikzpicture}
+    \end{subfigure}
+    \label{fig.personas}
+\end{wrapfigure}
+
 In order to embrace the user-centered design concept, we have to put ourselves in the shoes of the users we expect to use the platform. To do this, \emph{personas} were created.
 They are behavioural patterns build up from the ground who represent the different type of users that we might have.
 We made three of them for the project.
 All three work in the same startup. \emph{Andrew McAllister} is the CEO, \emph{Melanie Carter} a developer, and \emph{Sergei Fleming} an interaction designer.
-These personas were not defined in much more details, as part of the research was to determine more clearly for which purpose Flok is going to be used. %TODO should we delete this sentence?
+On the right, the pictures we used to give a face to our personas\footnote{From \url{http://uifaces.com}}.
 
 \section{User story mapping}
-\emph{User story mapping} (USM) is a technique which help teams developing software while staying focused on users and their needs \cite{patton2014user}.
-It is based on user stories and story maps. \emph{User stories} are descriptions of how users are interacting with the whole product and not only with one of its feature.
+\emph{User story mapping} (USM) is a technique which help teams developing software while staying focused on users and their actual needs \cite{patton2014user}.
+It is ideal for projects where innovation is important.
+By that we mean when we don't start with clear requirements and need to do research to define them.
+USM is based on user stories and story maps. \emph{User stories} are descriptions of how users are interacting with the whole product and not only with one of its feature.
 \emph{Story maps} are a two-dimensional visual representation of stories with \emph{cards} as atomic parts.
 In general, the top row of cards represents the backbone of the story (from left to right), and the cards below give more details.
 In addition to the focus it gives on the users, USM enables the discussion within the team who builds it to create a shared understanding of the product.
@@ -175,7 +230,8 @@ This makes it also more difficult to follow when reading the story map.
 \subsubsection*{Story description}
 The story simply start with Andrew having a rough idea that he wants to share in order to discuss about it and develop it.
 He then adds the idea on Flok and describe it with a small text and images.
-From here, other users can take part to the idea. For instance, Melanie is looking for interesting ideas in the \emph{discovery} view of the app and she get inspired by the one from Andrew.
+From here, other users can take part to the idea.
+For instance, Melanie is looking for interesting ideas in the \emph{discovery} view of the app and she gets inspired by the one from Andrew.
 From here, she has several possibilities.
 She can simply bookmark the idea in order to have it saved, and hence, easily come back to it later.
 She can also follow the idea in order to get informed of the activity occurring within it.
@@ -291,7 +347,8 @@ It allows a good interactivity of the end user which is a good fit with the natu
 Moreover, I personally already have a good experience with it, and Nothing Interactive as well.
 
 As we were satisfied with the result of using Material Design for the prototype, we wanted to keep following those guidelines.
-Material Design Lite being too light, it was not enough.
+Material Design Lite is not enough anymore as it is too light.
+Indeed, it does not implement a lot of the Material Design components\footnote{\url{https://wikipedia.org/wiki/Comparison_of_Material_Design_implementations}}
 Looking at the different alternatives implementations and knowing that we were going to use AngularJS, the decision to use \emph{Angular Material}\footnote{\url{https://material.angularjs.org}} was straightforward.
 
 There are different ways to build an AngularJS application.
@@ -384,7 +441,6 @@ The user flow to add an idea is illustrated in appendix \ref{sec.addingIdea} and
 \FloatBarrier
 \subsubsection{Ideas state}
 \label{sec.ideasState}
-Here there is actually not much to say regarding the implementation itself.
 We introduced these states in order to easily visualize the development situation of an idea.
 Initially, to update the state, it has either to be promoted or demoted, respectively to the next or previous state.
 To do so, one of the idea follower had to start a poll asking all the followers to vote for or against and change of state (see figure \ref{fig.promotionPoll}).
@@ -520,8 +576,8 @@ We mentioned earlier the fact that brainstorming is a process which can easily g
 As we try to be close to the human way of doing, discussions in Flok give the same liberty, which can bring the same messiness.
 However, this liberty let the user express her thoughts and that is why we want to keep it.
 Nevertheless, we want to highlight the most important points of the discussion, bubble up the good ideas.
-This is what the recap do.
-You already saw how it looks like on mobile in figure \ref{fig.idea.recap}.
+This is what the recap does.
+As shown already on mobile in figure \ref{fig.idea.recap}.
 This same layout on a desktop would be quite inefficient, therefore we adapted the view to give a better experience when showing the recap on a large screen, as you can see in figure \ref{fig.recap.desktop}.
 The user flow through the recap view is illustrated in appendix \ref{sec.recapFlow}.
 
@@ -534,8 +590,8 @@ The user flow through the recap view is illustrated in appendix \ref{sec.recapFl
 
 To select the comments and show them in a specific order, it runs an algorithm which returns the most relevant comments and order them by importance.
 Such an algorithm should obviously run in the back-end of the system.
-But as explained in section \ref{sec.architecture}, we unfortunately do not have any back-end.
-That is why we implemented the recap algorithm in the front-end.
+But as explained in section \ref{sec.architecture}, we do not have any back-end for time constraints.
+That is why we implemented the algorithm in the front-end.
 
 Initially we wanted to take into consideration the text content of the comments and use some topic modeling to discover the different main topics discussed.
 The \emph{Latent Dirichlet Allocation} \cite{blei2003latent} model seemed to be a good one to use for the algorithm.
@@ -621,7 +677,7 @@ The main efforts have been focused in respecting the properties of an \emph{Acti
 %All the activity is stored in this service and we can either get the global activity using the \texttt{getActivity} method, or get the activity specific to one person using the \texttt{getPersonActivity} method.
 
 This part of Flok did not receive as much improvement as other parts.
-Indeed, it is interesting to look at the activity in the platform to see what others are doing.
+Indeed, it is interesting to look at the activity in the platform to see what other users are doing.
 But as interaction between users is not possible yet without a back-end, it was difficult to see the activity grow and therefore notice if the way it has been implemented is adapted.
 
 \begin{figure}[!htb]
@@ -632,7 +688,7 @@ But as interaction between users is not possible yet without a back-end, it was 
 \end{figure}
 
 \section{User testing}
-In order to check the assumptions made during the user-centered design process, we made three user testing sessions.
+In order to verify the assumptions made during the user-centered design process, we made three user testing sessions.
 We used the service TestingTime\footnote{\url{http://testingtime.com}} to find test users.
 The tests were made through Skype with the test users sharing their screen with us.
 We spread the tests over one week, on Monday, Wednesday and Friday.
@@ -668,7 +724,7 @@ From that situation, we learned that we'd better ask in advance the test users t
 The first test user was a 34 years old woman.
 
 She was clearly not experimented in computer usage, which was a good thing.
-Indeed, observing her behavior highlighted some bad interface implementation which we did not notice by ourselves as the way it was done was obvious for us.
+Indeed, observing her behavior highlighted some usability issues in the interface implementation which we did not notice by ourselves as the way it was done was obvious for us.
 
 As already mentioned, she was using an outdated browser which did not render the app layout as it should.
 Therefore, during the test, there was also some misunderstanding of how some of the features should work.
@@ -1006,12 +1062,12 @@ The second phase of the tests gave the test users a glimpse at what collaboratio
 Their feeling was that the app could be useful for companies or organizations.
 
 % Relevance of results
-It is difficult to make strong conclusions based only on the three test sessions.
+It would be bold to make conclusions based only on the three test sessions.
 However, these tests enabled us to uncover most of the usability issues.
 The feedback we have got and the improvements they allowed us to make are really promising and tell us that we are going in the right direction.
 
 % What could have been done better
-That is quite unfortunate that we had to make this hard choice between back-end and user testing.
+We had to make this hard choice between back-end and user testing.
 If we could have had both, we could have been able to test real interaction between users and notice how it could have improved collaboration.
 Maybe if we had taken more time at the beginning to plan a bit on the longer term, we could have been able to do both.
 However, it would have been at the cost of another part of the project where we would have had less time to accomplish.
